@@ -59,6 +59,3 @@ if __name__ == "__main__":
         #  OR Check what type of action it is, then modify only player or location accordingly
         #  OR Method in Player class for move or updating inventory
         #  OR Method in Location class for updating location item info, or other location data etc....
-
-
-ayishabi
