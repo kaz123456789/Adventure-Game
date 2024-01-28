@@ -172,8 +172,8 @@ class World:
         - self.map != [[]]
     """
     map: list[list[int]]
-    locations = list[Location]
-    items = list[Item]
+    locations: list[Location]
+    items: list[Item]
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
