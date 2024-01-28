@@ -25,28 +25,28 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - _x: The x-coordinate of the current location
-        - _y: The y-coordinate of the current location
-        - _location_number: An integer that represents the location
-        - _brief_description: A brief description of the location, or None if the location has not been visited
-        - _long_description: A full description of the location, or None if the location has been visited
-        - _actions: A list of available actions in the current location
-        - _visited: A boolean value indicates whether the location has been visited or not
+        - x_cord: The x-coordinate of the current location
+        - y_cord: The y-coordinate of the current location
+        - location_number: An integer that represents the location
+        - brief_description: A brief description of the location, or None if the location has not been visited
+        - long_description: A full description of the location, or None if the location has been visited
+        - actions: A list of available actions in the current location
+        - visited: A boolean value indicates whether the location has been visited or not
 
     Representation Invariants:
-        - 0 <= self._x <= 10
-        - 0 <= self._y <= 10
+        - 0 <= self.x <= 10
+        - 0 <= self.y <= 10
 
     """
-    _x: int
-    _y: int
-    _location_number: int
-    _brief_description: Optional[str]
-    _long_description: Optional[str]
-    _actions: list[str]
-    _visited: bool
+    x_cord: int
+    y_cord: int
+    location_number: int
+    brief_description: Optional[str]
+    long_description: Optional[str]
+    actions: list[str]
+    visited: bool
 
-    def __init__(self, x: int, y: int, location_number: int, brief_description: str,
+    def __init__(self, x_cord: int, y_cord: int, location_number: int, brief_description: str,
                  long_description: str, actions: list[str]) -> None:
         """Initialize a new location."""
 
@@ -66,13 +66,13 @@ class Location:
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
 
-        self._x = x
-        self._y = y
-        self._location_number = location_number
-        self._brief_description = brief_description
-        self._long_description = long_description
-        self._actions = actions
-        self._visited = False
+        self.x_cord = x_cord
+        self.y_cord = y_cord
+        self.location_number = location_number
+        self.brief_description = brief_description
+        self.long_description = long_description
+        self.actions = actions
+        self.visited = False
 
     def available_actions(self):
         """
