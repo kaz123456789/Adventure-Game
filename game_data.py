@@ -250,5 +250,7 @@ class World:
          return None.)
         """
         if 0 <= x < len(self.map) and 0 <= y < len(self.map[0]) and self.map[x][y] != -1:
-            return self.locations[self.map[x][y]]
+            for location in self.locations:
+                if location.x_cord == x and location.y_cord == y:
+                    return location
         return None
