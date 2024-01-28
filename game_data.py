@@ -25,17 +25,30 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - # TODO
+        - _x: The x-coordinate of the current location
+        - _y: The y-coordinate of the current location
+        - _location_number: An integer that represents the location
+        - _brief_description: A brief description of the location, or None if the location has not been visited
+        - _long_description: A full description of the location, or None if the location has been visited
+        - _actions: A list of available actions in the current location
+        - _visited: A boolean value indicates whether the location has been visited or not
 
     Representation Invariants:
-        - # TODO
+        - 0 <= self._x <= 10
+        - 0 <= self._y <= 10
+
     """
+    _x: int
+    _y: int
+    _location_number: int
+    _brief_description: Optional[str]
+    _long_description: Optional[str]
+    _actions: list[str]
+    _visited: bool
 
-    def __init__(self) -> None:
-        """Initialize a new location.
-
-        # TODO Add more details here about the initialization if needed
-        """
+    def __init__(self, x: int, y: int, location_number: int, brief_description: str,
+                 long_description: str, actions: list[str]) -> None:
+        """Initialize a new location."""
 
         # NOTES:
         # Data that could be associated with each Location object:
@@ -53,7 +66,13 @@ class Location:
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
 
-        # TODO: Complete this method
+        self._x = x
+        self._y = y
+        self._location_number = location_number
+        self._brief_description = brief_description
+        self._long_description = long_description
+        self._actions = actions
+        self._visited = False
 
     def available_actions(self):
         """
