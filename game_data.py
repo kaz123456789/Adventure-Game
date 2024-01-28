@@ -34,8 +34,9 @@ class Location:
         - visited: A boolean value indicates whether the location has been visited or not
 
     Representation Invariants:
-        - 0 <= self.x <= 10
-        - 0 <= self.y <= 10
+        - 0 <= self.x_cord
+        - 0 <= self.y_cord
+        - 0 <= self.locaion_number
 
     """
     x_cord: int
@@ -47,7 +48,7 @@ class Location:
     visited: bool
 
     def __init__(self, x_cord: int, y_cord: int, location_number: int, brief_description: str,
-                 long_description: str, actions: list[str]) -> None:
+                 long_description: str, actions: TextIO) -> None:
         """Initialize a new location."""
 
         # NOTES:
@@ -71,7 +72,7 @@ class Location:
         self.location_number = location_number
         self.brief_description = brief_description
         self.long_description = long_description
-        self.actions = actions
+        self.actions = self.available_acrions(actions)
         self.visited = False
 
     def available_actions(self):
@@ -131,17 +132,17 @@ class Player:
     A Player in the text adventure game.
 
     Instance Attributes:
-        - x: The x-coordinate of the player's current location
-        - y: The y-coordinate of the player's current location
+        - x_cord: The x-coordinate of the player's current location
+        - y_cord: The y-coordinate of the player's current location
         - inventory: The player's list of found Item
         - victory: A boolean value indicates whether the player had won or not
 
     Representation Invariants:
-        - 0 <= self.x <= 10
-        - 0 <= self.y <= 10
+        - 0 <= self.x_cord
+        - 0 <= self.y_cord
     """
-    x: int
-    y: int
+    x_cord: int
+    y_cord: int
     inventory: list[str]
     victory: bool
 
