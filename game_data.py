@@ -72,10 +72,10 @@ class Location:
         self.location_number = location_number
         self.brief_description = brief_description
         self.long_description = long_description
-        self.actions = self.available_acrions(actions)
+        self.actions = self.available_actions(actions)
         self.visited = False
 
-    def available_actions(self):
+    def available_actions(self) -> list[str]:
         """
         Return the available actions in this location.
         The actions should depend on the items available in the location
