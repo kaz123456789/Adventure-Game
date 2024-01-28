@@ -137,8 +137,8 @@ class Player:
         - victory: A boolean value indicates whether the player had won or not
 
     Representation Invariants:
-        - 0 <= self._x <= 10
-        - 0 <= self._y <= 10
+        - 0 <= self.x <= 10
+        - 0 <= self.y <= 10
     """
     x: int
     y: int
@@ -217,9 +217,6 @@ class World:
         map_lst = [list(map(int, row.split())) for row in map_data]
         return map_lst
 
-    # TODO: Complete this method as specified. Do not modify any of this function's specifications.
-
-    # TODO: Add methods for loading location data and item data (see note above).
     def load_locations(self, location_data: TextIO) -> list[Location]:
         """
         Return a list of locations in the location_data.
@@ -231,6 +228,7 @@ class World:
                 location_num, x, y = [item for item in data[1:]]
                 locations.append(Location(int(x), int(y), int(location_num)))
         return locations
+     
     def load_items(self, items_data: TextIO) -> list[Item]:
         """
         Return a list of items in the items_data.
@@ -240,7 +238,6 @@ class World:
             data = line.strip().split()
             start_position, target_position, target_points, name = [item for item in data]
             items.append(Item(str(name), int(start_position), int(target_position), int(target_points)))
-
         return items
 
     # NOTE: The method below is REQUIRED. Complete it exactly as specified.
