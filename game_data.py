@@ -92,11 +92,20 @@ class Item:
     """An item in our text adventure game world.
 
     Instance Attributes:
-        - # TODO
+        - name: The name of the item.
+        - start_position: The number position of where the item is located.
+        - target_position: The number of position of where the item is to be deposited for credit.
+        - target_points: The number of point rewarded if the item has been successfully delivered to the credit place.
 
     Representation Invariants:
-        - # TODO
+        - self.name != ''
+        - self.start_position >= 0
+        - self.target_position >= 0
     """
+    name: str
+    start_position: int
+    target_position: int
+    target_points: int
 
     def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
         """Initialize a new item.
