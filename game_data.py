@@ -156,11 +156,15 @@ class World:
 
     Instance Attributes:
         - map: a nested list representation of this world's map
-        - # TODO add more instance attributes as needed; do NOT remove the map attribute
+        - locations: a list of Location of this world's map
+        - items: a list of Item that are available on the map
 
     Representation Invariants:
-        - # TODO
+        - self.map != [[]]
     """
+    map: list[list[int]]
+    locations = list[Location]
+    items = list[Item]
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
@@ -181,6 +185,8 @@ class World:
 
         # The map MUST be stored in a nested list as described in the load_map() function's docstring below
         self.map = self.load_map(map_data)
+        self.locations = self.load_locations(location_data)
+        self.items = self.load_items(items_data)
 
         # NOTE: You may choose how to store location and item data; create your own World methods to handle these
         # accordingly. The only requirements:
@@ -199,10 +205,34 @@ class World:
 
         Return this list representation of the map.
         """
+        map_lst = [list(map(int, row.split())) for row in map_data]
+        return map_lst
 
-        # TODO: Complete this method as specified. Do not modify any of this function's specifications.
+    # TODO: Complete this method as specified. Do not modify any of this function's specifications.
 
     # TODO: Add methods for loading location data and item data (see note above).
+    def load_locations(self, location_data: TextIO) -> list[Location]:
+        """
+        Return a list of locations in the location_data.
+        """
+        locations = []
+        for line in location_data:
+            if line.startswith('LOCATION'):
+                data = line.strip().split()
+                location_num, x, y = [item for item in data[1:]]
+                locations.append(Location(int(x), int(y), int(location_num)))
+        return locations
+    def load_items(self, items_data: TextIO) -> list[Item]:
+        """
+        Return a list of items in the items_data.
+        """
+        items = []
+        for line in items_data:
+            data = line.strip().split()
+            start_position, target_position, target_points, name = [item for item in data]
+            items.append(Item(str(name), int(start_position), int(target_position), int(target_points)))
+
+        return items
 
     # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def get_location(self, x: int, y: int) -> Optional[Location]:
@@ -210,5 +240,6 @@ class World:
          that position. Otherwise, return None. (Remember, locations represented by the number -1 on the map should
          return None.)
         """
-
-        # TODO: Complete this method as specified. Do not modify any of this function's specifications.
+        if 0 <= x < len(self.map) and 0 <= y < len(self.map[0]) and self.map[x][y] != -1:
+            return self.locations[self.map[x][y]]
+        return None
