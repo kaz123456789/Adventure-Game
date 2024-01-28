@@ -128,22 +128,22 @@ class Item:
 
 class Player:
     """
-    A Player in the text advanture game.
+    A Player in the text adventure game.
 
     Instance Attributes:
-        - _x: The x-coordinate of the player's current location
-        - _y: The y-coordinate of the player's current location
-        - _inventory: The player's list of found Item 
-        - _victory: A boolean value indicates whether the player had won or not
+        - x: The x-coordinate of the player's current location
+        - y: The y-coordinate of the player's current location
+        - inventory: The player's list of found Item
+        - victory: A boolean value indicates whether the player had won or not
 
     Representation Invariants:
         - 0 <= self._x <= 10
         - 0 <= self._y <= 10
     """
-    _x: int
-    _y: int
-    _inventory: list[str]
-    _victory: bool
+    x: int
+    y: int
+    inventory: list[str]
+    victory: bool
 
     def __init__(self, x: int, y: int) -> None:
         """
