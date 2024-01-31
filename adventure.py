@@ -45,6 +45,9 @@ if __name__ == "__main__":
 
     menu = ["look", "inventory", "score", "restart", "back"]
 
+    print('Welcome to Kathleen & Yanting\'s adventure world! \n')
+    print('Your adventure starts here! \n')
+
     while not p.victory:
         location = w.get_location(p.x, p.y)
 
@@ -54,20 +57,24 @@ if __name__ == "__main__":
         # print either full description (first time visit) or brief description (every subsequent visit)
 
         # Print initial words and instructions
-        print('Welcome to Kathleen & Yanting\'s adventure world! \n')
-        print('Your adventure starts here! \n')
         print("What to do? \n")
         print("[menu]")
-        for action in location.actions:
+        for action in w.available_actions(location, p):
             print(action)
         choice = input("\nEnter action: ")
 
+        if choice == "[menu]":
+            print("Menu Options: \n")
+            for option in menu:
+                print(option)
+            choice = input("\nChoose action: ")
+
         # Check if the player's choice is in the available actions and ask the player to
         # make another choice if needed.
-        while choice not in location.actions and choice not in menu:
+        while choice not in w.available_actions(location, p) and choice not in menu:
             print("This is not a valid action\n")
             print("[menu]")
-            for action in location.actions:
+            for action in w.available_actions(location, p):
                 print(action)
             choice = input("\nEnter action: ")
 
@@ -99,16 +106,14 @@ if __name__ == "__main__":
         # Reset all the data if the player's choice is 'quit'.
         # 我有点不太懂这个restart要怎么去把所有已经有的data全部归零
 
-        if choice.lower() not in menu or choice.lower() not in location.actions:
+        if choice.lower() not in menu or choice.lower() not in w.available_actions(location, p):
             do_action(w, p, choice)
             if not location.visited:
                 print(location.long_description)
                 p.score += 1
 
         if choice.lower() == 'restart':
-            p = Player(0, 0)
-            p.inventory = []
-            p.score = 0
+            break
 
 
 
