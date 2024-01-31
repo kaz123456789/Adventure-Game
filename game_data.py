@@ -42,13 +42,13 @@ class Location:
     x_cord: int
     y_cord: int
     location_number: int
-    brief_description: Optional[str]
-    long_description: Optional[str]
-    actions: list[str]
+    location_name: str
+    brief_description: str
+    long_description: str
     visited: bool
 
-    def __init__(self, x_cord: int, y_cord: int, location_number: int, brief_description: str,
-                 long_description: str, actions: TextIO) -> None:
+    def __init__(self, x_cord: int, y_cord: int, location_number: int, location_name: str,
+                 brief_description: str, long_description: str) -> None:
         """Initialize a new location."""
 
         # NOTES:
@@ -70,12 +70,12 @@ class Location:
         self.x_cord = x_cord
         self.y_cord = y_cord
         self.location_number = location_number
+        self.location_name = location_name
         self.brief_description = brief_description
         self.long_description = long_description
-        self.actions = self.available_actions(actions)
         self.visited = False
 
-    def available_actions(self) -> list[str]:
+    def available_actions(self, item) -> list[str]:
         """
         Return the available actions in this location.
         The actions should depend on the items available in the location
@@ -87,6 +87,7 @@ class Location:
         # function header (e.g. add in parameters, complete the type contract) as needed
 
         # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
+        return ['a']
 
 
 class Item:
@@ -173,8 +174,8 @@ class World:
         - self.map != [[]]
     """
     map: list[list[int]]
-    locations: list[Location]
-    items: list[Item]
+    locations = list[Location]
+    items = list[Item]
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
@@ -223,22 +224,36 @@ class World:
         Return a list of locations in the location_data.
         """
         locations = []
-        for line in location_data:
+        line = location_data.readline().strip()
+        while line != '':
             if line.startswith('LOCATION'):
-                data = line.strip().split()
-                location_num, x, y = [item for item in data[1:]]
-                locations.append(Location(int(x), int(y), int(location_num)))
+                data = line.split(',')
+                location_name, location_num, x, y = [item for item in data]
+                short = location_data.readline().strip()
+                long = location_data.readline().strip()
+                curr = long
+                while curr != 'END':
+                    long += curr
+                    curr = location_data.readline().strip()
+
+                locations.append(Location(int(x), int(y), int(location_num), location_name, short, long))
+
+            line = location_data.readline().strip()
+
         return locations
-     
+
     def load_items(self, items_data: TextIO) -> list[Item]:
         """
         Return a list of items in the items_data.
         """
         items = []
-        for line in items_data:
-            data = line.strip().split()
+        line = items_data.readline().strip()
+        while line != '':
+            data = line.strip().split(',')
             start_position, target_position, target_points, name = [item for item in data]
             items.append(Item(str(name), int(start_position), int(target_position), int(target_points)))
+            line = items_data.readline().strip()
+
         return items
 
     # NOTE: The method below is REQUIRED. Complete it exactly as specified.
