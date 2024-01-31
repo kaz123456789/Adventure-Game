@@ -240,6 +240,7 @@ class World:
             if line.startswith('LOCATION'):
                 data = line.split(',')
                 location_name, location_num, x, y = [item for item in data]
+                item = location_data.readline().strip()
                 short = location_data.readline().strip()
                 long = location_data.readline().strip()
                 curr = long
@@ -247,7 +248,7 @@ class World:
                     long += curr
                     curr = location_data.readline().strip()
 
-                locations.append(Location(int(x), int(y), int(location_num), location_name, short, long))
+                locations.append(Location(int(x), int(y), int(location_num), location_name, short, long, item))
 
             line = location_data.readline().strip()
 
