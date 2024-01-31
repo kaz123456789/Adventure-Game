@@ -34,7 +34,7 @@ class Location:
     Representation Invariants:
         - 0 <= self.x_cord
         - 0 <= self.y_cord
-        - 0 <= self.locaion_number
+        - 0 <= self.location_number
 
     """
     location_number: int
@@ -94,6 +94,17 @@ class Location:
             lst.append('pick')
         return lst
 
+    def has_visited(self) -> None:
+        """
+        Change the "visited" statue to True when the player has visited
+        this location based on the unique location number.
+        """
+        lst = []
+        if self.location_number not in lst:
+            lst.append(self.location_number)
+        else:
+            self.visited = True
+
 
 class Item:
     """An item in our text adventure game world.
@@ -151,6 +162,7 @@ class Player:
     y_cord: int
     inventory: list[str]
     victory: bool
+    score: int
 
     def __init__(self, x: int, y: int) -> None:
         """
@@ -165,8 +177,14 @@ class Player:
         self.y = y
         self.inventory = []
         self.victory = False
+        self.score = 0
 
     def cond_of_victory(self) -> None:
+        """
+        The 2 conditions of winning:
+        - The player's final position is (3, 5), where the Exam Centre is,
+        - The player has all the academic weapons prepared for the exam.
+        """
         location = self.x_cord == 3 and self.y_cord == 5
         all_items = all(item in self.inventory for item in ['cheatsheet', 'T-card', 'lucky pen'])
         if location and all_items:
