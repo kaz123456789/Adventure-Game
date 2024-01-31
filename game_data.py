@@ -75,7 +75,7 @@ class Location:
         self.location_name = location_name
         self.brief_description = brief_description
         self.long_description = long_description
-        self.actions = self.available_actions(item)
+        self.actions = self.available_actions()
         self.item = item
         self.visited = False
 
@@ -85,7 +85,7 @@ class Location:
         """
         return self.long_description
 
-    def available_actions(self, item: str) -> list[str]:
+    def available_actions(self) -> list[str]:
         """
         Return the available actions in this location.
         The actions should depend on the items available in the location
@@ -96,7 +96,7 @@ class Location:
         # i.e. You may remove/modify/rename this as you like, and complete the
         # function header (e.g. add in parameters, complete the type contract) as needed
         lst = []
-        if item != '':
+        if self.item != '':
             lst.append('pick')
         return lst
      
