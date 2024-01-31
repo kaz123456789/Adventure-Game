@@ -24,17 +24,18 @@ from game_data import World, Item, Location, Player
 # Note: You may add helper functions, classes, etc. here as needed
 def do_action(world: World, player: Player, user_choice: str) -> Location:
     """
-    Return the location of the current possition of the player.
+    Return the location of the current position of the player.
     """
-    if user_choice.lower() == 'go east':
+    if user_choice.lower() == 'east':
         player.y += 1
-    elif user_choice.lower() == 'go west':
+    elif user_choice.lower() == 'west':
         player.y -= 1
-    elif user_choice.lower() == 'go north':
+    elif user_choice.lower() == 'north':
         player.x += 1
-    elif user_choice.lower() == 'go south':
+    elif user_choice.lower() == 'south':
         player.x -= 1
     return world.get_location(player.x, player.y)
+
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
@@ -43,11 +44,14 @@ if __name__ == "__main__":
 
     menu = ["look", "inventory", "score", "quit", "back"]
 
-        while not p.victory:
+    while not p.victory:
         location = w.get_location(p.x, p.y)
 
         # TODO: ENTER CODE HERE TO PRINT LOCATION DESCRIPTION
 
+        if not location.visited:
+            print(location.long_description)
+            p.score += 1
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -76,11 +80,30 @@ if __name__ == "__main__":
                 print(option)
             choice = input("\nChoose action: ")
 
-        # Add the item in player's inventory if the player's choice is pick.
+        # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
             for item in w.items:
                 if location.location_number == item.start_position:
                     p.inventory += [item.name]
+                    p.score += 5
+
+        # Print the brief description if the player's choice is 'look'.
+        if choice.lower() == 'look':
+            print(location.brief_description)
+
+        # Print the inventory list if the player's choice is 'inventory'.
+        if choice.lower() == "inventory":
+            print(p.inventory)
+
+        # Print the player's score if their choice is 'score'.
+        if choice.lower() == 'score':
+            print(p.score)
+
+        # Reset all the data if the player's choice is 'quit'.
+        # 我有点不太懂这个restart要怎么去把所有已经有的data全部归零
+        if choice.lower() == 'quit':
+            p.victory = True
+
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
