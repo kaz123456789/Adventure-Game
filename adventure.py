@@ -21,6 +21,7 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 # Note: You may add in other import statements here as needed
 from game_data import World, Item, Location, Player
 
+
 # Note: You may add helper functions, classes, etc. here as needed
 def do_action(world: World, player: Player, user_choice: str) -> Location:
     """
@@ -42,16 +43,12 @@ if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
 
-    menu = ["look", "inventory", "score", "quit", "back"]
+    menu = ["look", "inventory", "score", "restart", "back"]
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
 
         # TODO: ENTER CODE HERE TO PRINT LOCATION DESCRIPTION
-
-        if not location.visited:
-            print(location.long_description)
-            p.score += 1
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -101,8 +98,18 @@ if __name__ == "__main__":
 
         # Reset all the data if the player's choice is 'quit'.
         # 我有点不太懂这个restart要怎么去把所有已经有的data全部归零
-        if choice.lower() == 'quit':
-            p.victory = True
+
+        if choice.lower() not in menu or choice.lower() not in location.actions:
+            do_action(w, p, choice)
+            if not location.visited:
+                print(location.long_description)
+                p.score += 1
+
+        if choice.lower() == 'restart':
+            p = Player(0, 0)
+            p.inventory = []
+            p.score = 0
+
 
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
