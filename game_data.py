@@ -25,8 +25,6 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - x_cord: The x-coordinate of the current location
-        - y_cord: The y-coordinate of the current location
         - location_number: An integer that represents the location
         - brief_description: A brief description of the location, or None if the location has not been visited
         - long_description: A full description of the location, or None if the location has been visited
@@ -39,8 +37,6 @@ class Location:
         - 0 <= self.locaion_number
 
     """
-    x_cord: int
-    y_cord: int
     location_number: int
     location_name: str
     brief_description: str
@@ -49,7 +45,7 @@ class Location:
     item: str
     visited: bool
 
-    def __init__(self, x_cord: int, y_cord: int, location_number: int, location_name: str,
+    def __init__(self, location_number: int, location_name: str,
                  brief_description: str, long_description: str, item: str) -> None:
         """Initialize a new location."""
 
@@ -69,8 +65,6 @@ class Location:
         # The only thing you must NOT change is the name of this class: Location.
         # All locations in your game MUST be represented as an instance of this class.
 
-        self.x_cord = x_cord
-        self.y_cord = y_cord
         self.location_number = location_number
         self.location_name = location_name
         self.brief_description = brief_description
@@ -95,11 +89,11 @@ class Location:
         # NOTE: This is just a suggested method
         # i.e. You may remove/modify/rename this as you like, and complete the
         # function header (e.g. add in parameters, complete the type contract) as needed
-        lst = []
+        lst = ['']
         if self.item != '':
             lst.append('pick')
         return lst
-     
+
 
 class Item:
     """An item in our text adventure game world.
@@ -245,7 +239,7 @@ class World:
         while line != '':
             if line.startswith('LOCATION'):
                 data = line.split(',')
-                location_name, location_num, x, y = [item for item in data]
+                location_name, location_num = [item for item in data]
                 item = location_data.readline().strip()
                 short = location_data.readline().strip()
                 long = location_data.readline().strip()
@@ -254,7 +248,7 @@ class World:
                     long += curr
                     curr = location_data.readline().strip()
 
-                locations.append(Location(int(x), int(y), int(location_num), location_name, short, long, item))
+                locations.append(Location(int(location_num), location_name, short, long, item))
 
             line = location_data.readline().strip()
 
@@ -282,6 +276,6 @@ class World:
         """
         if 0 <= x < len(self.map) and 0 <= y < len(self.map[0]) and self.map[x][y] != -1:
             for location in self.locations:
-                if location.x_cord == x and location.y_cord == y:
+                if self.map[y][x] == location.location_number:
                     return location
         return None
