@@ -43,23 +43,30 @@ if __name__ == "__main__":
 
     menu = ["look", "inventory", "score", "quit", "back"]
 
-    while not p.victory:
+        while not p.victory:
         location = w.get_location(p.x, p.y)
 
         # TODO: ENTER CODE HERE TO PRINT LOCATION DESCRIPTION
+
+
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
 
+        # Print initial words and instructions
+        print('Welcome to Kathleen & Yanting\'s adventure world! \n')
+        print('Your adventure starts here! \n')
         print("What to do? \n")
         print("[menu]")
-        for action in location.available_actions():
+        for action in location.actions:
             print(action)
         choice = input("\nEnter action: ")
 
-        if choice not in location.available_actions():
+        # Check if the player's choice is in the available actions and ask the player to
+        # make another choice if needed.
+        while choice not in location.actions and choice not in menu:
             print("This is not a valid action\n")
             print("[menu]")
-            for action in location.available_actions():
+            for action in location.actions:
                 print(action)
             choice = input("\nEnter action: ")
 
@@ -68,12 +75,12 @@ if __name__ == "__main__":
             for option in menu:
                 print(option)
             choice = input("\nChoose action: ")
-            while choice not in menu:
-                print("This is not a valid action\n")
-                print("Menu Options: \n")
-                for option in menu:
-                    print(option)
-                choice = input("\nChoose action: ")
+
+        # Add the item in player's inventory if the player's choice is pick.
+        if choice.lower() == 'pick':
+            for item in w.items:
+                if location.location_number == item.start_position:
+                    p.inventory += [item.name]
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
