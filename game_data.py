@@ -74,6 +74,12 @@ class Location:
         self.brief_description = brief_description
         self.long_description = long_description
         self.visited = False
+                  
+    def look(self) -> str:
+        """
+        Return the full description for the location.
+        """
+        return self.full_description
 
     def available_actions(self, item) -> list[str]:
         """
