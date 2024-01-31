@@ -1,34 +1,23 @@
-LOCATION:BR 1,1,0,0
-''
+LOCATION1:BR ,1
 You are on the first floor of the Robarts Library. There is an empty study room to the South, an exit from the library to the East.
 You are on the first floor of the Robarts Library. It's usually crowded at this time of the day, but today it's eerily quiet.
 Only a few students are studying inside one of the study rooms. You better not disturb them. A librarian stands near the
 service desk, looking bored and sleepy. There is an empty study room to the South, an exit from the library to the East.
 END
-
-LOCATION 2,2,0,0
-'cat'
+LOCATION2 ,2
 This study room is completely empty.
 You are in an empty study room. And by empty, we mean, absolutely empty. All the tables and chairs have been taken out,
 the whiteboards taken off the wall, not even the carpeting is left. Are they planning to do something else with this space?
 END
-
-LOCATION 3,3,0,2
-''
+LOCATION3 ,3
 You are outside the Robarts library.
 You are outside the Robarts library on a crowded street. There is a smell of coffee in the air.
 END
-
-
-LOCATION: Sidney Smith
-'cheatsheet'
+LOCATION: Sidney Smith,4
 You are at the centre of UofT. There is an exit to the East.
 You are at the centre of UofT. There is a second cup coffee around the entrance. You usually get your energy booster here.
 The Math Learning Centre has helped you through the whole semester and it is currently super crowded thanks to the final season. 
 There is an exit to the East. Let's walk around and check if you left your any of your weapons here.
 END
-
-
 LOCATION: BA4209
-
 LOCATION: UC 
