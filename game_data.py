@@ -26,9 +26,9 @@ class Location:
 
     Instance Attributes:
         - location_number: An integer that represents the location
+        - location_name: the name of the location
         - brief_description: A brief description of the location, or None if the location has not been visited
         - long_description: A full description of the location, or None if the location has been visited
-        - actions: A list of available actions in the current location
         - visited: A boolean value indicates whether the location has been visited or not
 
     Representation Invariants:
@@ -41,12 +41,10 @@ class Location:
     location_name: str
     brief_description: str
     long_description: str
-    actions: list[str]
-    item: str
     visited: bool
 
     def __init__(self, location_number: int, location_name: str,
-                 brief_description: str, long_description: str, item: str) -> None:
+                 brief_description: str, long_description: str) -> None:
         """Initialize a new location."""
 
         # NOTES:
@@ -69,8 +67,6 @@ class Location:
         self.location_name = location_name
         self.brief_description = brief_description
         self.long_description = long_description
-        self.actions = self.available_actions()
-        self.item = item
         self.visited = False
 
     def look(self) -> str:
@@ -78,21 +74,6 @@ class Location:
         Return the full description for the location.
         """
         return self.long_description
-
-    def available_actions(self) -> list[str]:
-        """
-        Return the available actions in this location.
-        The actions should depend on the items available in the location
-        and the x,y position of this location on the world map.
-        """
-
-        # NOTE: This is just a suggested method
-        # i.e. You may remove/modify/rename this as you like, and complete the
-        # function header (e.g. add in parameters, complete the type contract) as needed
-        lst = ['']
-        if self.item != '':
-            lst.append('pick')
-        return lst
 
     def has_visited(self) -> None:
         """
@@ -125,6 +106,7 @@ class Item:
     target_position: int
     target_points: int
 
+
     def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
         """Initialize a new item.
         """
@@ -153,6 +135,7 @@ class Player:
         - y_cord: The y-coordinate of the player's current location
         - inventory: The player's list of found Item
         - victory: A boolean value indicates whether the player had won or not
+        - score: a record of the player's current score
 
     Representation Invariants:
         - 0 <= self.x_cord
@@ -258,7 +241,6 @@ class World:
             if line.startswith('LOCATION'):
                 data = line.split(',')
                 location_name, location_num = [item for item in data]
-                item = location_data.readline().strip()
                 short = location_data.readline().strip()
                 long = location_data.readline().strip()
                 curr = long
@@ -266,7 +248,7 @@ class World:
                     long += curr
                     curr = location_data.readline().strip()
 
-                locations.append(Location(int(location_num), location_name, short, long, item))
+                locations.append(Location(int(location_num), location_name, short, long))
 
             line = location_data.readline().strip()
 
@@ -297,3 +279,30 @@ class World:
                 if self.map[y][x] == location.location_number:
                     return location
         return None
+
+    def available_actions(self, location: Location, player: Player) -> list[str]:
+        """
+        Return the available actions in this location.
+        The actions should depend on the items available in the location
+        and the x,y position of this location on the world map.
+        """
+
+        # NOTE: This is just a suggested method
+        # i.e. You may remove/modify/rename this as you like, and complete the
+        # function header (e.g. add in parameters, complete the type contract) as needed
+
+        actions = ['NORTH', 'SOUTH', 'WEST', 'EAST']
+        for item in self.items:
+            if location.location_number == item.start_position:
+                actions.append('PICK')
+
+        if player.x == 0:
+            actions.remove('WEST')
+        if player.x == 5:
+            actions.remove('EAST')
+        if player.y == 0:
+            actions.remove('SOUTH')
+        if player.y == 5:
+            actions.remove('NORTH')
+
+        return actions
