@@ -172,6 +172,12 @@ class Player:
         self.inventory = []
         self.victory = False
 
+    def cond_of_victory(self) -> None:
+        location = self.x_cord == 3 and self.y_cord == 5
+        all_items = all(item in self.inventory for item in ['cheatsheet', 'T-card', 'lucky pen'])
+        if location and all_items:
+            self.victory = True
+
 
 class World:
     """A text adventure game world storing all location, item and map data.
