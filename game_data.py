@@ -45,10 +45,12 @@ class Location:
     location_name: str
     brief_description: str
     long_description: str
+    actions: list[str]
+    item: str
     visited: bool
 
     def __init__(self, x_cord: int, y_cord: int, location_number: int, location_name: str,
-                 brief_description: str, long_description: str) -> None:
+                 brief_description: str, long_description: str, item: str) -> None:
         """Initialize a new location."""
 
         # NOTES:
@@ -73,15 +75,17 @@ class Location:
         self.location_name = location_name
         self.brief_description = brief_description
         self.long_description = long_description
+        self.actions = self.available_actions(item)
+        self.item = item
         self.visited = False
-                  
+
     def look(self) -> str:
         """
         Return the full description for the location.
         """
         return self.long_description
 
-    def available_actions(self, item) -> list[str]:
+    def available_actions(self, item: str) -> list[str]:
         """
         Return the available actions in this location.
         The actions should depend on the items available in the location
@@ -91,10 +95,11 @@ class Location:
         # NOTE: This is just a suggested method
         # i.e. You may remove/modify/rename this as you like, and complete the
         # function header (e.g. add in parameters, complete the type contract) as needed
-
-        # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
-        return ['a']
-
+        lst = []
+        if item != '':
+            lst.append('pick')
+        return lst
+     
 
 class Item:
     """An item in our text adventure game world.
