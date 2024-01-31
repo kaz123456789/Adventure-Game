@@ -79,7 +79,7 @@ class Location:
         """
         Return the full description for the location.
         """
-        return self.full_description
+        return self.long_description
 
     def available_actions(self, item) -> list[str]:
         """
