@@ -22,18 +22,19 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 from game_data import World, Item, Location, Player
 
 # Note: You may add helper functions, classes, etc. here as needed
-def do_action(w, p, location, choice) -> None:
+def do_action(world: World, player: Player, user_choice: str) -> Location:
     """
-
+    Return the location of the current possition of the player.
     """
-    if choice.lower() == 'east':
-        location = w.get_location(p.x, p.y + 1)
-    elif choice.lower() == 'west':
-        location = w.get_location(p.x, p.y - 1)
-    elif choice.lower() == 'north':
-        location = w.get_location(p.x + 1, p.y)
-    elif choice.lower() == 'south':
-        location = w.get_location(p.x - 1, p.y)
+    if user_choice.lower() == 'go east':
+        player.y += 1
+    elif user_choice.lower() == 'go west':
+        player.y -= 1
+    elif user_choice.lower() == 'go north':
+        player.x += 1
+    elif user_choice.lower() == 'go south':
+        player.x -= 1
+    return world.get_location(player.x, player.y)
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
