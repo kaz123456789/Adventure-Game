@@ -56,11 +56,24 @@ if __name__ == "__main__":
             print(action)
         choice = input("\nEnter action: ")
 
+        if choice not in location.available_actions():
+            print("This is not a valid action\n")
+            print("[menu]")
+            for action in location.available_actions():
+                print(action)
+            choice = input("\nEnter action: ")
+
         if choice == "[menu]":
             print("Menu Options: \n")
             for option in menu:
                 print(option)
             choice = input("\nChoose action: ")
+            while choice not in menu:
+                print("This is not a valid action\n")
+                print("Menu Options: \n")
+                for option in menu:
+                    print(option)
+                choice = input("\nChoose action: ")
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
