@@ -18,6 +18,7 @@ please consult our Course Syllabus.
 
 This file is Copyright (c) 2024 CSC111 Teaching Team
 """
+import textwrap
 from typing import Optional, TextIO
 
 
@@ -248,7 +249,8 @@ class World:
                     long += curr
                     curr = location_data.readline().strip()
 
-                locations.append(Location(int(location_num), location_name, short, long))
+                locations.append(Location(int(location_num), location_name,
+                                          textwrap.fill(short, 100), textwrap.fill(long, 100)))
 
             line = location_data.readline().strip()
 
@@ -274,7 +276,7 @@ class World:
          that position. Otherwise, return None. (Remember, locations represented by the number -1 on the map should
          return None.)
         """
-        if 0 <= x < len(self.map) and 0 <= y < len(self.map[0]) and self.map[x][y] != -1:
+        if 0 <= y < len(self.map) and 0 <= x < len(self.map[0]) and self.map[y][x] != -1:
             for location in self.locations:
                 if self.map[y][x] == location.location_number:
                     return location
@@ -291,18 +293,18 @@ class World:
         # i.e. You may remove/modify/rename this as you like, and complete the
         # function header (e.g. add in parameters, complete the type contract) as needed
 
-        actions = ['NORTH', 'SOUTH', 'WEST', 'EAST']
+        actions = ['[menu]', 'north', 'south', 'west', 'east']
         for item in self.items:
             if location.location_number == item.start_position:
-                actions.append('PICK')
+                actions.append('pick')
 
         if player.x == 0:
-            actions.remove('WEST')
-        if player.x == 5:
-            actions.remove('EAST')
+            actions.remove('west')
+        if player.x == len(self.map[0]):
+            actions.remove('east')
         if player.y == 0:
-            actions.remove('NORTH')
-        if player.y == 5:
-            actions.remove('SOUTH')
+            actions.remove('north')
+        if player.y == len(self.map):
+            actions.remove('south')
 
         return actions
