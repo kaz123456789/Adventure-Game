@@ -58,7 +58,7 @@ def undo_action(player: Player, user_choice: str) -> None:
     return
 
 
-# w and choice are not yet defined here so there is an issue 
+# w and choice are not yet defined here so there is an issue
 def check_valid_action(w: World, choice: str, location: Location, player: Player) -> bool:
     """
     Return whether if the player's next action is valid
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
     total_steps_count = 0
-    menu = ["look", "inventory", "score", "restart", "back"]
+    menu = ["look", "inventory", "score", "quit", "back"]
 
     print('Welcome to Kathleen & Yanting\'s adventure world! \n')
     print('Your adventure starts here! \n')
@@ -152,7 +152,7 @@ if __name__ == "__main__":
         if choice.lower() == 'quit':
             print('You exit the game. You can reload the page to start a new game.')
             break
-            
+
         if total_steps_count > 25:
             print('Times up! You failed to make it to the test. Try again!')
             break
