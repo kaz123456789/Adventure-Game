@@ -301,8 +301,8 @@ class World:
         if player.x == 5:
             actions.remove('EAST')
         if player.y == 0:
-            actions.remove('SOUTH')
-        if player.y == 5:
             actions.remove('NORTH')
+        if player.y == 5:
+            actions.remove('SOUTH')
 
         return actions
