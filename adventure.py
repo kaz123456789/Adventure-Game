@@ -62,6 +62,7 @@ if __name__ == "__main__":
 
     print('Welcome to Kathleen & Yanting\'s adventure world! \n')
     print('Your adventure starts here! \n')
+    print('It is 10am right now.')
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
