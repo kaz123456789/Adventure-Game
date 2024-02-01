@@ -36,6 +36,8 @@ def do_action(player: Player, user_choice: str) -> None:
     elif user_choice.lower() == 'south':
         player.y += 1
     return
+
+
 def undo_action(player: Player, user_choice: str) -> None:
     """
     Undo the action that was made by the player.
@@ -55,7 +57,7 @@ def undo_action(player: Player, user_choice: str) -> None:
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
-
+    total_steps_count = 0
     menu = ["look", "inventory", "score", "restart", "back"]
 
     print('Welcome to Kathleen & Yanting\'s adventure world! \n')
@@ -63,7 +65,7 @@ if __name__ == "__main__":
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
-
+        temp = location.item
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -74,6 +76,7 @@ if __name__ == "__main__":
         for action in w.available_actions(location, p):
             print(action)
         choice = input("\nEnter action: ")
+        total_steps_count += 1
 
         if choice == "[menu]":
             print("Menu Options: \n")
@@ -88,13 +91,12 @@ if __name__ == "__main__":
             for action in w.available_actions(location, p):
                 print(action)
             choice = input("\nEnter action: ")
+            total_steps_count += 1
 
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
-            for item in w.items:
-                if location.location_number == item.start_position:
-                    p.inventory += [item.name]
-                    p.score += 5
+            p.inventory += temp
+            location.item = ''
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
@@ -106,12 +108,10 @@ if __name__ == "__main__":
         if choice.lower() == 'score':
             print(p.score)
 
-        # Reset all the data if the player's choice is 'quit'.
-        # 我有点不太懂这个restart要怎么去把所有已经有的data全部归零
         pre_action = None
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
 
-            if w.get_location(p.x + 1, p.y + 1) is not None:
+            if (0 <= p.x + 1 <= 5) and (0 <= p.y + 1 <= 5):
                 do_action(p, choice)
                 if not location.visited:
                     location.visited = True
@@ -125,15 +125,17 @@ if __name__ == "__main__":
                 print('You cannot go this way.')
                 print('You\'ve reached the boarder of the school')
 
-
-
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
-            print(location.long_description)
+            print(location.look())
 
-
+        # Reset all the data if the player's choice is 'restart'.
         if choice.lower() == 'restart':
-            break
+            total_steps_count = 0
+            p = Player(0, 0)
+            p.inventory = []
+            p.score = 0
+            location.item = temp
 
 
 
@@ -147,3 +149,7 @@ if __name__ == "__main__":
         #  OR Check what type of action it is, then modify only player or location accordingly
         #  OR Method in Player class for move or updating inventory
         #  OR Method in Location class for updating location item info, or other location data etc....
+
+    p.cond_of_victory()
+    if p.victory:
+        print("Congratulations! You won the game! Good luck on your test!")
