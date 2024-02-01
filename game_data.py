@@ -22,6 +22,44 @@ import textwrap
 from typing import Optional, TextIO
 
 
+class Item:
+    """An item in our text adventure game world.
+
+    Instance Attributes:
+        - name: The name of the item.
+        - start_position: The number position of where the item is located.
+        - target_position: The number of position of where the item is to be deposited for credit.
+        - target_points: The number of point rewarded if the item has been successfully delivered to the credit place.
+
+    Representation Invariants:
+        - self.name != ''
+        - self.start_position >= 0
+        - self.target_position >= 0
+    """
+    name: str
+    start_position: int
+    target_position: int
+    target_points: int
+
+    def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
+        """Initialize a new item.
+        """
+
+        # NOTES:
+        # This is just a suggested starter class for Item.
+        # You may change these parameters and the data available for each Item object as you see fit.
+        # (The current parameters correspond to the example in the handout).
+        # Consider every method in this Item class as a "suggested method".
+        #
+        # The only thing you must NOT change is the name of this class: Item.
+        # All item objects in your game MUST be represented as an instance of this class.
+
+        self.name = name
+        self.start_position = start
+        self.target_position = target
+        self.target_points = target_points
+
+
 class Location:
     """A location in our text adventure game world.
 
@@ -43,9 +81,10 @@ class Location:
     brief_description: str
     long_description: str
     visited: bool
+    item: str
 
     def __init__(self, location_number: int, location_name: str,
-                 brief_description: str, long_description: str) -> None:
+                 brief_description: str, long_description: str, item: str) -> None:
         """Initialize a new location."""
 
         # NOTES:
@@ -69,62 +108,13 @@ class Location:
         self.brief_description = brief_description
         self.long_description = long_description
         self.visited = False
+        self.item = item
 
     def look(self) -> str:
         """
         Return the full description for the location.
         """
         return self.long_description
-
-    def has_visited(self) -> None:
-        """
-        Change the "visited" statue to True when the player has visited
-        this location based on the unique location number.
-        """
-        lst = []
-        if self.location_number not in lst:
-            lst.append(self.location_number)
-        else:
-            self.visited = True
-
-
-class Item:
-    """An item in our text adventure game world.
-
-    Instance Attributes:
-        - name: The name of the item.
-        - start_position: The number position of where the item is located.
-        - target_position: The number of position of where the item is to be deposited for credit.
-        - target_points: The number of point rewarded if the item has been successfully delivered to the credit place.
-
-    Representation Invariants:
-        - self.name != ''
-        - self.start_position >= 0
-        - self.target_position >= 0
-    """
-    name: str
-    start_position: int
-    target_position: int
-    target_points: int
-
-
-    def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
-        """Initialize a new item.
-        """
-
-        # NOTES:
-        # This is just a suggested starter class for Item.
-        # You may change these parameters and the data available for each Item object as you see fit.
-        # (The current parameters correspond to the example in the handout).
-        # Consider every method in this Item class as a "suggested method".
-        #
-        # The only thing you must NOT change is the name of this class: Item.
-        # All item objects in your game MUST be represented as an instance of this class.
-
-        self.name = name
-        self.start_position = start
-        self.target_position = target
-        self.target_points = target_points
 
 
 class Player:
@@ -242,6 +232,7 @@ class World:
             if line.startswith('LOCATION'):
                 data = line.split(',')
                 location_name, location_num = [item for item in data]
+                item = location_data.readline().strip()
                 short = location_data.readline().strip()
                 long = location_data.readline().strip()
                 curr = long
@@ -250,7 +241,7 @@ class World:
                     curr = location_data.readline().strip()
 
                 locations.append(Location(int(location_num), location_name,
-                                          textwrap.fill(short, 100), textwrap.fill(long, 100)))
+                                          textwrap.fill(short, 100), textwrap.fill(long, 100), item))
 
             line = location_data.readline().strip()
 
@@ -297,6 +288,8 @@ class World:
         for item in self.items:
             if location.location_number == item.start_position:
                 actions.append('pick')
+            if location.item == '':
+                actions.remove('pick')
 
         if player.x == 0:
             actions.remove('west')
