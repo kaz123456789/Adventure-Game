@@ -28,13 +28,13 @@ def do_action(world: World, player: Player, user_choice: str) -> Location:
     Return the location of the current position of the player.
     """
     if user_choice.lower() == 'east':
-        player.y += 1
-    elif user_choice.lower() == 'west':
-        player.y -= 1
-    elif user_choice.lower() == 'north':
         player.x += 1
-    elif user_choice.lower() == 'south':
+    elif user_choice.lower() == 'west':
         player.x -= 1
+    elif user_choice.lower() == 'north':
+        player.y -= 1
+    elif user_choice.lower() == 'south':
+        player.y += 1
     return world.get_location(player.x, player.y)
 
 
@@ -51,14 +51,15 @@ if __name__ == "__main__":
     while not p.victory:
         location = w.get_location(p.x, p.y)
 
+
         # TODO: ENTER CODE HERE TO PRINT LOCATION DESCRIPTION
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
 
         # Print initial words and instructions
+
         print("What to do? \n")
-        print("[menu]")
         for action in w.available_actions(location, p):
             print(action)
         choice = input("\nEnter action: ")
@@ -71,18 +72,11 @@ if __name__ == "__main__":
 
         # Check if the player's choice is in the available actions and ask the player to
         # make another choice if needed.
-        while choice not in w.available_actions(location, p) and choice not in menu:
+        while choice.lower() not in w.available_actions(location, p) and choice not in menu:
             print("This is not a valid action\n")
-            print("[menu]")
             for action in w.available_actions(location, p):
                 print(action)
             choice = input("\nEnter action: ")
-
-        if choice == "[menu]":
-            print("Menu Options: \n")
-            for option in menu:
-                print(option)
-            choice = input("\nChoose action: ")
 
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
@@ -91,13 +85,11 @@ if __name__ == "__main__":
                     p.inventory += [item.name]
                     p.score += 5
 
-        # Print the brief description if the player's choice is 'look'.
-        if choice.lower() == 'look':
-            print(location.brief_description)
-
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
-            print(p.inventory)
+            print('[inventory:]')
+            for item in p.inventory:
+                print(item)
 
         # Print the player's score if their choice is 'score'.
         if choice.lower() == 'score':
@@ -106,11 +98,21 @@ if __name__ == "__main__":
         # Reset all the data if the player's choice is 'quit'.
         # 我有点不太懂这个restart要怎么去把所有已经有的data全部归零
 
-        if choice.lower() not in menu or choice.lower() not in w.available_actions(location, p):
+        if choice.lower() == 'east' or 'west' or 'south' or 'north':
             do_action(w, p, choice)
             if not location.visited:
+                location.visited = True
+                print(location.location_name)
                 print(location.long_description)
                 p.score += 1
+            else:
+                print(location.location_name)
+                print(location.brief_description)
+
+        # Print the long description if the player's choice is 'look'.
+        if choice.lower() == 'look':
+            print(location.long_description)
+
 
         if choice.lower() == 'restart':
             break
