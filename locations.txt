@@ -1,20 +1,22 @@
-LOCATION:UC 11,11
-''
+LOCATION:UC,11
 You are on the first floor of Morrisan Hall. There is a cafeteria to the South and exit to St.George Street to the East.
 You are on the first floor of Morrisan Hall, your home for first year. There is a cafeteria to the South, it's usually
 crowded during lunch and dinner time. There are a few students doing the punishments of Truth or Dare right now in the cafeteria,
 everyone is looking at them and laughing. There is an exit to St.George Street to the East.
 END
-LOCATION:BA4209 51,51
-''
+LOCATION:BA,51
 You are on the fourth floor of Bahen Centre. There is exit to St.George street to the East.
-You are on the fourth floor of Bahen Centre. Your favourite prof Sadia has her office hour here. The hall way is
+You are on the fourth floor of Bahen Centre. You have your CSC111 tutorial here. You can go upstairs to room 4209 by
+entering North. The hall way is more crowded than usual since everyone is preparing for the final exam. 
 END
-LOCATION:SS 21,21
-'cheatsheet'
+LOCATION:SS,21
 You are at the centre of UofT. There is an exit to the East.
 You are at the centre of UofT. There is a second cup coffee around the entrance. You usually get your energy booster here.
-The Math Learning Centre, A.K.A. 'MLC' has helped you through the whole semester and it is currently super crowded thanks
+The Math Learning Centre, A.K.A.'MLC' has helped you through the whole semester and it is currently super crowded thanks
 to the final season. There is an exit to the East. Let's walk around and check if you left anything here.
 END
-
+LOCATION:EX,85
+You are in the front of the Exam Centre. If you have all your items ready, you may take the test.
+You are in the front of the Exam Centre. You may come back to the Exam Centre after you collect everything you need for
+the test. Now, go explore the campus!
+END
