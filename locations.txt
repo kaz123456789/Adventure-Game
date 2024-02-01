@@ -1,16 +1,16 @@
-LOCATION:UC 11
+LOCATION:UC 11,11
 ''
 You are on the first floor of Morrisan Hall. There is a cafeteria to the South and exit to St.George Street to the East.
 You are on the first floor of Morrisan Hall, your home for first year. There is a cafeteria to the South, it's usually
 crowded during lunch and dinner time. There are a few students doing the punishments of Truth or Dare right now in the cafeteria,
 everyone is looking at them and laughing. There is an exit to St.George Street to the East.
 END
-LOCATION:BA4209 21
+LOCATION:BA4209 51,51
 ''
 You are on the fourth floor of Bahen Centre. There is exit to St.George street to the East.
-You are on the fourth floor of Bahen Centre. Your favourite prof Sadia has her office hour here. The hall way is 
+You are on the fourth floor of Bahen Centre. Your favourite prof Sadia has her office hour here. The hall way is
 END
-LOCATION:SS 21
+LOCATION:SS 21,21
 'cheatsheet'
 You are at the centre of UofT. There is an exit to the East.
 You are at the centre of UofT. There is a second cup coffee around the entrance. You usually get your energy booster here.
