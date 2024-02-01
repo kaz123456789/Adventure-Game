@@ -23,19 +23,24 @@ from game_data import World, Item, Location, Player
 
 
 # Note: You may add helper functions, classes, etc. here as needed
-def do_action(player: Player, user_choice: str) -> None:
+def do_action(player: Player, user_choice: str) -> str:
     """
     Do the action of user's choice and return the action done.
     """
+    action_done = ''
     if user_choice.lower() == 'east':
         player.x += 1
+        action_done = 'east'
     elif user_choice.lower() == 'west':
         player.x -= 1
+        action_done = 'west'
     elif user_choice.lower() == 'north':
         player.y -= 1
+        action_done = 'north'
     elif user_choice.lower() == 'south':
         player.y += 1
-    return
+        action_done = 'south'
+    return action_done
 
 
 def undo_action(player: Player, user_choice: str) -> None:
@@ -51,6 +56,19 @@ def undo_action(player: Player, user_choice: str) -> None:
     elif user_choice.lower() == 'south':
         player.y -= 1
     return
+
+
+def check_valid_action(w: World, choice: str, location: Location, player: Player) -> bool:
+    """
+    Return whether if the player's next action is valid
+    """
+    prep_action = do_action(player, choice)
+    if w.get_location(player.x, player.y) is None or location.location_number == -1:
+        undo_action(p, prep_action)
+        return False
+    else:
+        undo_action(p, prep_action)
+        return True
 
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
@@ -111,8 +129,8 @@ if __name__ == "__main__":
 
         pre_action = None
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
-
-            if (0 <= p.x + 1 <= 5) and (0 <= p.y + 1 <= 5):
+            if check_valid_action(w, choice, location, p):
+                print('TRUE')
                 do_action(p, choice)
                 if not location.visited:
                     location.visited = True
