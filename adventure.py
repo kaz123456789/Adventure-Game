@@ -23,9 +23,9 @@ from game_data import World, Item, Location, Player
 
 
 # Note: You may add helper functions, classes, etc. here as needed
-def do_action(world: World, player: Player, user_choice: str) -> Location:
+def do_action(player: Player, user_choice: str) -> None:
     """
-    Return the location of the current position of the player.
+    Do the action of user's choice and return the action done.
     """
     if user_choice.lower() == 'east':
         player.x += 1
@@ -35,7 +35,20 @@ def do_action(world: World, player: Player, user_choice: str) -> Location:
         player.y -= 1
     elif user_choice.lower() == 'south':
         player.y += 1
-    return world.get_location(player.x, player.y)
+    return
+def undo_action(player: Player, user_choice: str) -> None:
+    """
+    Undo the action that was made by the player.
+    """
+    if user_choice.lower() == 'east':
+        player.x -= 1
+    elif user_choice.lower() == 'west':
+        player.x += 1
+    elif user_choice.lower() == 'north':
+        player.y += 1
+    elif user_choice.lower() == 'south':
+        player.y -= 1
+    return
 
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
@@ -51,8 +64,6 @@ if __name__ == "__main__":
     while not p.victory:
         location = w.get_location(p.x, p.y)
 
-
-        # TODO: ENTER CODE HERE TO PRINT LOCATION DESCRIPTION
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -97,17 +108,24 @@ if __name__ == "__main__":
 
         # Reset all the data if the player's choice is 'quit'.
         # 我有点不太懂这个restart要怎么去把所有已经有的data全部归零
-
+        pre_action = None
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
-            do_action(w, p, choice)
-            if not location.visited:
-                location.visited = True
-                print(location.location_name)
-                print(location.long_description)
-                p.score += 1
+
+            if w.get_location(p.x + 1, p.y + 1) is not None:
+                do_action(p, choice)
+                if not location.visited:
+                    location.visited = True
+                    print(location.location_name)
+                    print(location.long_description)
+                    p.score += 1
+                else:
+                    print(location.location_name)
+                    print(location.brief_description)
             else:
-                print(location.location_name)
-                print(location.brief_description)
+                print('You cannot go this way.')
+                print('You\'ve reached the boarder of the school')
+
+
 
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
