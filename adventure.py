@@ -58,6 +58,7 @@ def undo_action(player: Player, user_choice: str) -> None:
     return
 
 
+# w and choice are not yet defined here so there is an issue 
 def check_valid_action(w: World, choice: str, location: Location, player: Player) -> bool:
     """
     Return whether if the player's next action is valid
@@ -130,7 +131,6 @@ if __name__ == "__main__":
         pre_action = None
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
             if check_valid_action(w, choice, location, p):
-                print('TRUE')
                 do_action(p, choice)
                 if not location.visited:
                     location.visited = True
@@ -148,27 +148,22 @@ if __name__ == "__main__":
         if choice.lower() == 'look':
             print(location.look())
 
-        # Reset all the data if the player's choice is 'restart'.
-        if choice.lower() == 'restart':
-            total_steps_count = 0
-            p = Player(0, 0)
-            p.inventory = []
-            p.score = 0
-            location.item = temp
+        # Reset all the data if the player's choice is 'quit'.
+        if choice.lower() == 'quit':
+            print('You exit the game. You can reload the page to start a new game.')
+            break
+            
+        if total_steps_count > 25:
+            print('Times up! You failed to make it to the test. Try again!')
+            break
 
 
 
-        # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
-        #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
-        #  the choice the player made was just a movement, so only updating player's position is enough to change the
-        #  location to the next appropriate location
-        #  Possibilities:
-        #  A helper function such as do_action(w, p, location, choice)
-        #  OR A method in World class w.do_action(p, location, choice)
-        #  OR Check what type of action it is, then modify only player or location accordingly
-        #  OR Method in Player class for move or updating inventory
-        #  OR Method in Location class for updating location item info, or other location data etc....
+
 
     p.cond_of_victory()
     if p.victory:
-        print("Congratulations! You won the game! Good luck on your test!")
+        print("Congratulations! You have everything you need before the exam starts and You \
+        came to the Exam Centre on time! Good luck on your test!")
+    else:
+        print("You failed to make it to the test. Try again!")
