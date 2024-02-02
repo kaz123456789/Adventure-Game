@@ -81,7 +81,6 @@ if __name__ == "__main__":
 
     print('Welcome to Kathleen & Yanting\'s adventure world! \n')
     print('Your adventure starts here! \n')
-    print('It is 10am right now.')
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
@@ -90,10 +89,8 @@ if __name__ == "__main__":
             print(location.location_name)
             print(location.long_description)
             p.score += 1
-        else:
-            print(location.location_name)
-            print(location.brief_description)
-
+        # else:
+        #     print(location.location_name)
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -104,6 +101,7 @@ if __name__ == "__main__":
         for action in w.available_actions(location, p):
             print(action)
         choice = input("\nEnter action: ")
+        print('')
         total_steps_count += 1
 
         if choice == "[menu]":
@@ -119,7 +117,9 @@ if __name__ == "__main__":
             for action in w.available_actions(location, p):
                 print(action)
             choice = input("\nEnter action: ")
+            print('')
             total_steps_count += 1
+            break
 
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
@@ -141,7 +141,7 @@ if __name__ == "__main__":
                 do_action(p, choice)
             else:
                 print('This way is blocked.')
-                print('You cannot go this way.')
+                print('You cannot go this way. \n')
 
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
@@ -152,7 +152,7 @@ if __name__ == "__main__":
             print('You exit the game. You can reload the page to start a new game.')
             break
 
-        if total_steps_count > 25:
+        if total_steps_count > 20:
             print('Times up! You failed to make it to the test. Try again!')
             break
 
