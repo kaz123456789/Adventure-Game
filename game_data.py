@@ -81,10 +81,9 @@ class Location:
     brief_description: str
     long_description: str
     visited: bool
-    item: str
 
     def __init__(self, location_number: int, location_name: str,
-                 brief_description: str, long_description: str, item: str) -> None:
+                 brief_description: str, long_description: str) -> None:
         """Initialize a new location."""
 
         # NOTES:
@@ -108,7 +107,6 @@ class Location:
         self.brief_description = brief_description
         self.long_description = long_description
         self.visited = False
-        self.item = item
 
     def look(self) -> str:
         """
@@ -232,16 +230,15 @@ class World:
             if line.startswith('LOCATION'):
                 data = line.split(',')
                 location_name, location_num = [item for item in data]
-                item = location_data.readline().strip()
                 short = location_data.readline().strip()
                 long = location_data.readline().strip()
-                curr = long
+                curr = ''
                 while curr != 'END':
                     long += curr
                     curr = location_data.readline().strip()
 
                 locations.append(Location(int(location_num), location_name,
-                                          textwrap.fill(short, 100), textwrap.fill(long, 100), item))
+                                          textwrap.fill(short, 100), textwrap.fill(long, 100)))
 
             line = location_data.readline().strip()
 
@@ -288,8 +285,6 @@ class World:
         for item in self.items:
             if location.location_number == item.start_position:
                 actions.append('pick')
-            if location.item == '':
-                actions.remove('pick')
 
         if player.x == 0:
             actions.remove('west')
