@@ -158,7 +158,7 @@ class Player:
         - The player has all the academic weapons prepared for the exam.
         """
         location = self.x_cord == 3 and self.y_cord == 5
-        all_items = all(item in self.inventory for item in ['cheatsheet', 'T-card', 'lucky pen'])
+        all_items = all(item in self.inventory for item in ['Cheat Sheet', 'T-card', 'Lucky pen'])
         if location and all_items:
             self.victory = True
 
@@ -281,16 +281,18 @@ class World:
         # i.e. You may remove/modify/rename this as you like, and complete the
         # function header (e.g. add in parameters, complete the type contract) as needed
 
-        actions = ['[menu]', 'north', 'south', 'west', 'east']
+        actions = ['[menu]', 'score', 'north', 'south', 'west', 'east']
         for item in self.items:
             if location.location_number == item.start_position:
                 actions.append('pick')
+            if 'Backpack' in player.inventory:
+                actions.append('open')
 
         return actions
 
     def pick(self, location: Location, p: Player) -> str:
         """
-        Pick up the item and store in player's inventory and return item name. 
+        Pick up the item and store in player's inventory and return item name.
         The item is also removed from this location.
         """
         item_name = ''
@@ -301,3 +303,13 @@ class World:
                 item.start_position = -1
 
         return item_name
+
+    def open_backpack(self, p: Player) -> None:
+        """
+        Open the backpack and get the lucky pen that is inside the bag.
+        """
+        for item in self.items:
+            if item.name == 'Backpack':
+                item.name = 'Luky pen'
+        p.inventory.remove('Backpack')
+        p.inventory.append('Luky pen')
