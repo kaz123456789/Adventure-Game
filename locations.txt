@@ -1,6 +1,6 @@
 LOCATION:UC DORM ROOM,11
 You woke up and realized you are at your dorm room.
-You woke up and realized you are at your dorm room. The clock says that it is already 2pm, your exam is staring in one hour! But you couldn't find your T-card, cheet sheet and lucky pen you need to take the exam! Hurry up! Get out of your bed and look for them before the exam starts!
+You woke up and realized you are at your dorm room. The clock says that it is already 2PM, your exam is staring in one hour! But you couldn't find your T-card, cheet sheet and lucky pen you need to take the exam! Hurry up! Get out of your bed and look for them before the exam starts!
 END
 LOCATION:UC,12
 You are on the first floor of Morrisan Hall. The cafeteria is less crowded than usual.
@@ -9,6 +9,17 @@ END
 LOCATION:LAWN,20
 You are at the lawn at front campus.
 You are at the lawn at front campus. The construction was just completed last fall. 
+END
+LOCATION:RB COMMONS,13
+You are at the Robarts Commons, there's nearly no seats available because is the final season.
+You are at the Robarts Commons, there's nearly no seats available because is the final season. You study here all the time. The lastest you stayed here until 3AM.
+END
+LOCATION:RB STARBUCKS,14
+You are at the Starbuck in Robarts library.
+You are at the Starbuck in Robarts library. There is a huge line up just like usual. 
+END
+LOCATION:RB ENTRANCE,17
+You entered Robarts Library with your t card....
 END
 LOCATION:BA,51
 You are on the fourth floor of Bahen Centre. There is exit to St.George street to the East.
