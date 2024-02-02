@@ -21,7 +21,7 @@ You are at the Starbuck in Robarts library.
 You are at the Starbuck in Robarts library. There is a huge line-up just like usual.
 END
 LOCATION:RB ENTRANCE,15
-You entered Robarts Library with your T-card.
+You are on the first floor of Robarts Library.
 You entered Robarts Library with your T-card. This is the place you spend most of your time at.
 END
 LOCATION:SS STUDENT SERVICE,16
