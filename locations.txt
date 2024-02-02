@@ -1,18 +1,24 @@
 LOCATION:UC DORM ROOM,11
 You woke up and realized you are at your dorm room.
-You woke up and realized you are at your dorm room. The clock says that it is already 2PM, your exam is staring in one hour! But you couldn't find your T-card, cheet sheet and lucky pen you need to take the exam! Hurry up! Get out of your bed and look for them before the exam starts!
+You woke up and realized you are at your dorm room. The clock says that it is already 2PM,
+your exam is staring in one hour! But you couldn't find your T-card, cheet sheet and lucky
+pen you need to take the exam! Hurry up! Get out of your bed and look for them before the exam starts!
 END
 LOCATION:UC,12
 You are on the first floor of Morrisan Hall. The cafeteria is less crowded than usual.
-You are on the first floor of Morrisan Hall, your home for first year. The cafeteria is less crowded than usual. There are a few students doing the punishments of Truth or Dare right now in the cafeteria, everyone is looking at them and laughing. You can exit from the east to the lawn at front campus.
+You are on the first floor of Morrisan Hall, your home for first year. The cafeteria is less
+crowded than usual. There are a few students doing the punishments of Truth or Dare right
+now in the cafeteria, everyone is looking at them and laughing. You can exit from the east
+to the lawn at front campus.
 END
 LOCATION:RB COMMONS,13
 You are on the first floor of Robarts Commons, there's nearly no seats available because is the final season.
-You are at the Robarts Commons, there's nearly no seats available because is the final season. You study here all the time. The lastest you stayed here until 3AM.
+You are at the Robarts Commons, there's nearly no seats available because is the final season.
+You study here all the time. The lastest you stayed here until 3AM.
 END
 LOCATION:RB STARBUCKS,14
 You are at the Starbuck in Robarts library.
-You are at the Starbuck in Robarts library. There is a huge line up just like usual.
+You are at the Starbuck in Robarts library. There is a huge line-up just like usual.
 END
 LOCATION:RB ENTRANCE,15
 You entered Robarts Library with your T-card.
@@ -20,59 +26,65 @@ You entered Robarts Library with your T-card. This is the place you spend most o
 END
 LOCATION:SS STUDENT SERVICE,16
 You are at the student service office in Sidney Smith.
-You are at the student service office in Sidney Smith. You came here several times to ask questions and get past exam printouts.
+You are at the student service office in Sidney Smith. You came here several times to ask questions and get
+past exam printouts.
 END
 LOCATION:LAWN,17
 You are at the lawn at front campus.
 You are at the lawn at front campus. The construction was just completed last fall.
 END
-LOCATION:LAWN,18
-You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall.
-END
-LOCATION:SS,19
+LOCATION:SS,18
 You are at the entrance of Sidney Smith Hall.
-You are at the entrance of Sidney Smith Hall. The Second Cup coffee shop is less busy than usual. You can head east to go downstairs.
+You are at the entrance of Sidney Smith Hall. The Second Cup coffee shop is less busy than usual.
+You can head east to go downstairs.
 END
-LOCATION:SS BASEMENT,20
+LOCATION:SS BASEMENT,19
 You are on the basement foor of Sidney Smith Hall.
 You are on the basement foor of Sidney Smith Hall near the math learning centre. Head west to go upstairs.
 END
-LOCATION:SS MLC, 21
+LOCATION:SS MLC, 20
 You are at the math learning centre.
-You are at the math learning centre. It is temporately closed due to the exam season but the door was half opened so you slip in.
+You are at the math learning centre. It is temporately closed due to the exam season
+but the door was half opened, so you slip in.
 END
-LOCATION:LAWN,22
-You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall.
+LOCATION: MY,21
+You are at the entrance of Myhal.
+You are at the entrance of Myhal. There are many groups of engineering students working on their final project.
 END
-LOCATION:LAWN,23
-You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall.
+LOCATION: MY MY150,22
+You entered the MY150.
+You entered the MY150, the lecture room you had last semester for CSC110. The room is empty.
 END
-LOCATION:BA,25
-You are on the fourth floor of Bahen Centre. There is exit to St.George street to the East.
-You are on the fourth floor of Bahen Centre. You have your CSC111 tutorial here. You can go upstairs to room 4209 by
-entering North. The hall way is more crowded than usual since everyone is preparing for the final exam.
+LOACTION: BA,23
+You are on the first floor of Bahen Centre for Information Technology.
+You are on the first floor of Bahen Centre for Information Technology. 
+It seems like there is a job fair happening. It is very crowed and took you some time to get inside.
 END
-LOCATION:LAWN,26
-You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall.
+LOCATION: BA, 24
+You are on the first floor of Bahen Centre for Information Technology.
+You are on the first floor of Bahen Centre for Information Technology. You have your CSC111 tutorial here.
+The hallway is more crowded than usual. There is an elevator nearby you can take to go upstairs.
 END
-LOCATION:LAWN,27
-You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall.
+LOCATION: BA 4TH FLOOR,25
+You are on the fourth floor of Bahen Centre.
+You took the elevator and got to the 4th floor. You noticed the door beside you is opended 
+and Sadia is at the end of the table looking at her laptop.
 END
-LOCATION:LAWN,29
-You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall.
+LOCATION: BA4290,26
+You entered room BA4290.
+You entered room BA4290. Your CSC111's office hours takes place in this room. 
+Sadia have noticed you entered the room, she asked you why are you still here, it's almost the start of your exam.
+You told her that you can't find your cheetsheet. Now she asks you if you need any help.
 END
-LOCATION:LAWN,30
-You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall.
+LOCATION:EXAM CENTRE EX100,27
+You are at the door of EX100, where you will take your exam today!
+You are at the door of EX100, where you will take your exam today! 
+You can now take the test if you have everything you need! If you are still not ready, 
+come back later! Remember the test is starting very soon, hurry up and find your items!
 END
-LOCATION:EX,85
-You are in the front of the Exam Centre. If you have all your items ready, you may take the test.
-You are in the front of the Exam Centre. You may come back to the Exam Centre after you collect everything you need for
-the test. Now, go explore the campus!
+LOCATION:EXAM CENTRE EX200,28
+You are at the door of EX200.
+You are at the door of EX200. This is not the room for you to take your exam. But you saw many fimiliar faces
+also at the door waiting to enter the exam room. EX100 is right beside it.
 END
+
