@@ -6,20 +6,37 @@ LOCATION:UC,12
 You are on the first floor of Morrisan Hall. The cafeteria is less crowded than usual.
 You are on the first floor of Morrisan Hall, your home for first year. The cafeteria is less crowded than usual. There are a few students doing the punishments of Truth or Dare right now in the cafeteria, everyone is looking at them and laughing. You can exit from the east to the lawn at front campus. 
 END
-LOCATION:LAWN,20
-You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall. 
-END
 LOCATION:RB COMMONS,13
-You are at the Robarts Commons, there's nearly no seats available because is the final season.
+You are on the first floor of Robarts Commons, there's nearly no seats available because is the final season.
 You are at the Robarts Commons, there's nearly no seats available because is the final season. You study here all the time. The lastest you stayed here until 3AM.
 END
 LOCATION:RB STARBUCKS,14
 You are at the Starbuck in Robarts library.
 You are at the Starbuck in Robarts library. There is a huge line up just like usual. 
 END
-LOCATION:RB ENTRANCE,17
-You entered Robarts Library with your t card....
+LOCATION:RB ENTRANCE,15
+You entered Robarts Library with your t card.
+You entered Robarts Library with your t card. This is the place you spend most of your time at.
+END
+LOCATION:SS STUDENT SERVICE, 16
+You are at the student service office in Sidney Smith.
+You are at the student service office in Sidney Smith. You came here several times to ask questions and get past exam printouts.
+END
+LOCATION:SS,17
+You are at the entrance of Sidney Smith Hall.
+You are at the entrance of Sidney Smith Hall. The Second Cup coffee shop is less busy than usual. You can head east to go downstairs.
+END
+LOCATION:SS BASEMENT,18
+You are on the basement foor of Sidney Smith Hall. 
+You are on the basement foor of Sidney Smith Hall near the math learning centre.
+END
+LOCATION:SS MLC, 19
+You are at the math learning centre.
+You are at the math learning centre. It is temporately closed due to the exam season but the door was half opened so you slip in.
+END
+LOCATION:LAWN,20
+You are at the lawn at front campus.
+You are at the lawn at front campus. The construction was just completed last fall. 
 END
 LOCATION:BA,51
 You are on the fourth floor of Bahen Centre. There is exit to St.George street to the East.
