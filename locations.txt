@@ -4,7 +4,7 @@ You woke up and realized you are at your dorm room. The clock says that it is al
 END
 LOCATION:UC,12
 You are on the first floor of Morrisan Hall. The cafeteria is less crowded than usual.
-You are on the first floor of Morrisan Hall, your home for first year. The cafeteria is less crowded than usual. There are a few students doing the punishments of Truth or Dare right now in the cafeteria, everyone is looking at them and laughing. You can exit from the east to the lawn at front campus. 
+You are on the first floor of Morrisan Hall, your home for first year. The cafeteria is less crowded than usual. There are a few students doing the punishments of Truth or Dare right now in the cafeteria, everyone is looking at them and laughing. You can exit from the east to the lawn at front campus.
 END
 LOCATION:RB COMMONS,13
 You are on the first floor of Robarts Commons, there's nearly no seats available because is the final season.
@@ -12,7 +12,7 @@ You are at the Robarts Commons, there's nearly no seats available because is the
 END
 LOCATION:RB STARBUCKS,14
 You are at the Starbuck in Robarts library.
-You are at the Starbuck in Robarts library. There is a huge line up just like usual. 
+You are at the Starbuck in Robarts library. There is a huge line up just like usual.
 END
 LOCATION:RB ENTRANCE,15
 You entered Robarts Library with your T-card.
@@ -22,26 +22,54 @@ LOCATION:SS STUDENT SERVICE,16
 You are at the student service office in Sidney Smith.
 You are at the student service office in Sidney Smith. You came here several times to ask questions and get past exam printouts.
 END
-LOCATION:SS,17
+LOCATION:LAWN,17
+You are at the lawn at front campus.
+You are at the lawn at front campus. The construction was just completed last fall.
+END
+LOCATION:LAWN,18
+You are at the lawn at front campus.
+You are at the lawn at front campus. The construction was just completed last fall.
+END
+LOCATION:SS,19
 You are at the entrance of Sidney Smith Hall.
 You are at the entrance of Sidney Smith Hall. The Second Cup coffee shop is less busy than usual. You can head east to go downstairs.
 END
-LOCATION:SS BASEMENT,18
-You are on the basement foor of Sidney Smith Hall. 
+LOCATION:SS BASEMENT,20
+You are on the basement foor of Sidney Smith Hall.
 You are on the basement foor of Sidney Smith Hall near the math learning centre. Head west to go upstairs.
 END
-LOCATION:SS MLC, 19
+LOCATION:SS MLC, 21
 You are at the math learning centre.
 You are at the math learning centre. It is temporately closed due to the exam season but the door was half opened so you slip in.
 END
-LOCATION:LAWN,20
+LOCATION:LAWN,22
 You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall. 
+You are at the lawn at front campus. The construction was just completed last fall.
+END
+LOCATION:LAWN,23
+You are at the lawn at front campus.
+You are at the lawn at front campus. The construction was just completed last fall.
 END
 LOCATION:BA,25
 You are on the fourth floor of Bahen Centre. There is exit to St.George street to the East.
 You are on the fourth floor of Bahen Centre. You have your CSC111 tutorial here. You can go upstairs to room 4209 by
-entering North. The hall way is more crowded than usual since everyone is preparing for the final exam. 
+entering North. The hall way is more crowded than usual since everyone is preparing for the final exam.
+END
+LOCATION:LAWN,26
+You are at the lawn at front campus.
+You are at the lawn at front campus. The construction was just completed last fall.
+END
+LOCATION:LAWN,27
+You are at the lawn at front campus.
+You are at the lawn at front campus. The construction was just completed last fall.
+END
+LOCATION:LAWN,29
+You are at the lawn at front campus.
+You are at the lawn at front campus. The construction was just completed last fall.
+END
+LOCATION:LAWN,30
+You are at the lawn at front campus.
+You are at the lawn at front campus. The construction was just completed last fall.
 END
 LOCATION:EX,85
 You are in the front of the Exam Centre. If you have all your items ready, you may take the test.
