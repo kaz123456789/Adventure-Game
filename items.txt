@@ -1,5 +1,4 @@
-24,38,10,Cheat Sheet
-36,38,15,Sadia's Cheet Sheet
-13,38,10,Backpack
-29,38,10,T-Card
-
+21,34,10,Cheat Sheet
+32,34,15,Sadia's Cheet Sheet
+13,34,10,Backpack
+26,34,10,T-Card
