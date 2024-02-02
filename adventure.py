@@ -127,7 +127,7 @@ if __name__ == "__main__":
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
             item = w.pick(location, p)
-            print('\nYou\'ve picked up ' + item +'\n')
+            print('\nYou\'ve picked up ' + item + '\n')
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
@@ -155,6 +155,7 @@ if __name__ == "__main__":
         # The player can open their backpack if this action is valid
         if choice.lower() == 'open':
             w.open_backpack(p)
+            print('\nYou\'ve opened backpack' + '\n')
             p.score += 5
 
         # Reset all the data if the player's choice is 'quit'.
