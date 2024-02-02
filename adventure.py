@@ -22,7 +22,6 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 from game_data import World, Item, Location, Player
 
 
-# Note: You may add helper functions, classes, etc. here as needed
 def do_action(player: Player, user_choice: str) -> str:
     """
     Do the action of user's choice and return the action done.
@@ -61,7 +60,7 @@ def undo_action(player: Player, user_choice: str) -> None:
 def check_valid_action(world: World, player_choice: str,
                        curr_location: Location, player: Player) -> bool:
     """
-    Return whether if the player's next action is valid
+    Return whether if the player's next action is valid.
     """
     prep_action = do_action(player, player_choice)
     if world.get_location(player.x, player.y) is None or curr_location.location_number == -1:
@@ -70,6 +69,7 @@ def check_valid_action(world: World, player_choice: str,
     else:
         undo_action(p, prep_action)
         return True
+
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
@@ -80,16 +80,19 @@ if __name__ == "__main__":
 
     print('Welcome to Kathleen & Yanting\'s adventure world! \n')
     print('Your adventure starts here! \n')
+    print('It is 10am right now.')
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
+
         if not location.visited:
             location.visited = True
             print(location.location_name)
             print(location.long_description)
             p.score += 1
-        # else:
-        #     print(location.location_name)
+        else:
+            print(location.location_name)
+            print(location.brief_description)
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -100,7 +103,6 @@ if __name__ == "__main__":
         for action in w.available_actions(location, p):
             print(action)
         choice = input("\nEnter action: ")
-        print('')
         total_steps_count += 1
 
         if choice == "[menu]":
@@ -116,13 +118,12 @@ if __name__ == "__main__":
             for action in w.available_actions(location, p):
                 print(action)
             choice = input("\nEnter action: ")
-            print('')
             total_steps_count += 1
-            break
 
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
-            location.item = ''
+            item = w.pick(location, p)
+            print('You\'ve picked up ' + item)
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
@@ -140,7 +141,7 @@ if __name__ == "__main__":
                 do_action(p, choice)
             else:
                 print('This way is blocked.')
-                print('You cannot go this way. \n')
+                print('You cannot go this way.')
 
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
@@ -151,7 +152,7 @@ if __name__ == "__main__":
             print('You exit the game. You can reload the page to start a new game.')
             break
 
-        if total_steps_count > 20:
+        if total_steps_count > 25:
             print('Times up! You failed to make it to the test. Try again!')
             break
 
