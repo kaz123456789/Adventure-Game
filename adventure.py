@@ -135,7 +135,7 @@ if __name__ == "__main__":
 
         # Print the player's score if their choice is 'score'.
         if choice.lower() == 'score':
-            print('\nYour current score is:' + 'p.score' + '\n')
+            print('\nYour current score is: ' + str(p.score) + '\n')
 
         # Checks if the next action is valid, if yes, then make the move
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
