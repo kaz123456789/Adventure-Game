@@ -58,19 +58,18 @@ def undo_action(player: Player, user_choice: str) -> None:
     return
 
 
-# w and choice are not yet defined here so there is an issue
-def check_valid_action(w: World, choice: str, location: Location, player: Player) -> bool:
+def check_valid_action(world: World, player_choice: str,
+                       curr_location: Location, player: Player) -> bool:
     """
     Return whether if the player's next action is valid
     """
-    prep_action = do_action(player, choice)
-    if w.get_location(player.x, player.y) is None or location.location_number == -1:
+    prep_action = do_action(player, player_choice)
+    if world.get_location(player.x, player.y) is None or curr_location.location_number == -1:
         undo_action(p, prep_action)
         return False
     else:
         undo_action(p, prep_action)
         return True
-
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
