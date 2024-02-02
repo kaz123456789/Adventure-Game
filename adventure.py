@@ -70,18 +70,19 @@ def check_valid_action(world: World, player_choice: str,
         undo_action(p, prep_action)
         return True
 
+
 game_start = True
-# Note: You may modify the code below as needed; the following starter template are just suggestions
+
 
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate
+    rec = Player(0, 2)  # copy of the most recent x, y coordinates of the player
     total_steps_count = 0
     menu = ["look", "inventory", "score", "quit", "back"]
 
     print('Welcome to Kathleen & Yanting\'s adventure world! \n')
     print('Your adventure starts here! \n')
-    print('It is 10am right now.')
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
@@ -92,8 +93,8 @@ if __name__ == "__main__":
             print(location.long_description)
             p.score += 1
         else:
-            print(location.location_name)
-            print(location.brief_description)
+            if p.x != rec.x and p.y != rec.y:
+                print(location.location_name)
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -140,6 +141,7 @@ if __name__ == "__main__":
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
             if check_valid_action(w, choice, location, p):
                 do_action(p, choice)
+                rec.x, rec.y = p.x, p.y
             else:
                 print('This way is blocked.')
                 print('You cannot go this way.')
@@ -168,4 +170,3 @@ if __name__ == "__main__":
         came to the Exam Centre on time! Good luck on your test!")
     else:
         print("You failed to make it to the test. Try again!")
-
