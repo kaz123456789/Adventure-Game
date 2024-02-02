@@ -286,13 +286,4 @@ class World:
             if location.location_number == item.start_position:
                 actions.append('pick')
 
-        if player.x == 0:
-            actions.remove('west')
-        if player.x == len(self.map[0]):
-            actions.remove('east')
-        if player.y == 0:
-            actions.remove('north')
-        if player.y == len(self.map):
-            actions.remove('south')
-
         return actions
