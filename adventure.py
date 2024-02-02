@@ -75,7 +75,7 @@ def check_valid_action(w: World, choice: str, location: Location, player: Player
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
-    p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
+    p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate
     total_steps_count = 0
     menu = ["look", "inventory", "score", "quit", "back"]
 
@@ -85,7 +85,15 @@ if __name__ == "__main__":
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
-        temp = location.item
+        if not location.visited:
+            location.visited = True
+            print(location.location_name)
+            print(location.long_description)
+            p.score += 1
+        else:
+            print(location.location_name)
+            print(location.brief_description)
+
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -115,7 +123,6 @@ if __name__ == "__main__":
 
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
-            p.inventory += temp
             location.item = ''
 
         # Print the inventory list if the player's choice is 'inventory'.
@@ -132,17 +139,9 @@ if __name__ == "__main__":
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
             if check_valid_action(w, choice, location, p):
                 do_action(p, choice)
-                if not location.visited:
-                    location.visited = True
-                    print(location.location_name)
-                    print(location.long_description)
-                    p.score += 1
-                else:
-                    print(location.location_name)
-                    print(location.brief_description)
             else:
+                print('This way is blocked.')
                 print('You cannot go this way.')
-                print('You\'ve reached the boarder of the school')
 
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
@@ -156,10 +155,6 @@ if __name__ == "__main__":
         if total_steps_count > 25:
             print('Times up! You failed to make it to the test. Try again!')
             break
-
-
-
-
 
     p.cond_of_victory()
     if p.victory:
