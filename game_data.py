@@ -287,3 +287,17 @@ class World:
                 actions.append('pick')
 
         return actions
+
+    def pick(self, location: Location, p: Player) -> str:
+        """
+        Pick up the item and store in player's inventory and return item name. 
+        The item is also removed from this location.
+        """
+        item_name = ''
+        for item in self.items:
+            if item.start_position == location.location_number:
+                p.inventory.append(item.name)
+                item_name = item.name
+                item.start_position = -1
+
+        return item_name
