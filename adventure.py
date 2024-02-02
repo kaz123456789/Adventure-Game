@@ -105,6 +105,7 @@ if __name__ == "__main__":
         for action in w.available_actions(location, p):
             print(action)
         choice = input("\nEnter action: ")
+        print('')
         total_steps_count += 1
 
         if choice == "[menu]":
@@ -120,6 +121,7 @@ if __name__ == "__main__":
             for action in w.available_actions(location, p):
                 print(action)
             choice = input("\nEnter action: ")
+            print('')
             total_steps_count += 1
 
         # Add the item in player's inventory if the player's choice is 'pick'.
