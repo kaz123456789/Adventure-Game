@@ -285,8 +285,8 @@ class World:
         for item in self.items:
             if location.location_number == item.start_position:
                 actions.append('pick')
-            if 'Backpack' in player.inventory:
-                actions.append('open')
+        if 'Backpack' in player.inventory:
+            actions.append('open')
 
         return actions
 
@@ -310,6 +310,7 @@ class World:
         """
         for item in self.items:
             if item.name == 'Backpack':
-                item.name = 'Luky pen'
+                item.name = 'Lucky pen'
         p.inventory.remove('Backpack')
-        p.inventory.append('Luky pen')
+        p.inventory.append('Lucky pen')
+
