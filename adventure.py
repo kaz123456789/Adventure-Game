@@ -70,8 +70,9 @@ def check_valid_action(world: World, player_choice: str,
         undo_action(p, prep_action)
         return True
 
-
+game_start = True
 # Note: You may modify the code below as needed; the following starter template are just suggestions
+
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate
@@ -99,7 +100,7 @@ if __name__ == "__main__":
 
         # Print initial words and instructions
 
-        print("What to do? \n")
+        print("\nWhat to do? \n")
         for action in w.available_actions(location, p):
             print(action)
         choice = input("\nEnter action: ")
@@ -123,7 +124,7 @@ if __name__ == "__main__":
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
             item = w.pick(location, p)
-            print('You\'ve picked up ' + item)
+            print('\nYou\'ve picked up ' + item +'\n')
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
@@ -133,9 +134,9 @@ if __name__ == "__main__":
 
         # Print the player's score if their choice is 'score'.
         if choice.lower() == 'score':
-            print(p.score)
+            print('\nYour current score is:' + 'p.score' + '\n')
 
-        pre_action = None
+        # Checks if the next action is valid, if yes, then make the move
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
             if check_valid_action(w, choice, location, p):
                 do_action(p, choice)
@@ -146,6 +147,11 @@ if __name__ == "__main__":
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
             print(location.look())
+
+        # The player can open their backpack if this action is valid
+        if choice.lower() == 'open':
+            w.open_backpack(p)
+            p.score += 5
 
         # Reset all the data if the player's choice is 'quit'.
         if choice.lower() == 'quit':
@@ -162,3 +168,4 @@ if __name__ == "__main__":
         came to the Exam Centre on time! Good luck on your test!")
     else:
         print("You failed to make it to the test. Try again!")
+
