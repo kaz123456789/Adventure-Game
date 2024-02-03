@@ -99,8 +99,9 @@ if __name__ == "__main__":
             print(location.long_description)
             p.score += 1
         else:
-            if p.x != rec.x and p.y != rec.y:
-                print(location.location_name)
+            # if p.x != rec.x and p.y != rec.y:
+            print(location.location_name)
+            print(location.brief_description)
 
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -154,7 +155,7 @@ if __name__ == "__main__":
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
             if check_valid_action(w, choice, location, p):
                 do_action(p, choice)
-                rec.x, rec.y = p.x, p.y
+                # rec.x, rec.y = p.x, p.y
                 print('')
             else:
                 print('\nThis way is blocked.')
@@ -171,7 +172,7 @@ if __name__ == "__main__":
         # Print the player's score if their choice is 'score'.
         if choice.lower() == 'score':
             print('\nYour current score is: ' + str(p.score) + '\n')
-            
+
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
             print(location.look())
@@ -184,11 +185,11 @@ if __name__ == "__main__":
 
         # Reset all the data if the player's choice is 'quit'.
         if choice.lower() == 'quit':
-            print('You exit the game. You can reload the page to start a new game.')
+            print('You exit the game. You can reload the page to start a new game.\n')
             break
 
-        if total_steps_count > 20:
-            print('Times up! You failed to make it to the test. Try again!')
+        if total_steps_count > 35:
+            print('Times up! You failed to make it to the test. Try again!\n')
             break
 
     p.cond_of_victory()
