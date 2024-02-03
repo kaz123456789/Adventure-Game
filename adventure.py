@@ -147,7 +147,7 @@ if __name__ == "__main__":
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
-            print('[inventory:]')
+            print('[inventory]')
             for item in p.inventory:
                 print(item)
 
