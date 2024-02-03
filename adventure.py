@@ -130,20 +130,22 @@ if __name__ == "__main__":
             print('')
             total_steps_count += 1
 
-        # Add the item in player's inventory if the player's choice is 'pick'.
-        if choice.lower() == 'pick':
-            item = w.pick(location, p)
-            print('\nYou\'ve picked up ' + item)
-
         # Greet and ask Sadia for a cheatsheet if the player has arrived at LOCATION 26
         if choice.lower() == 'say hi':
-            print('You: Hi Sadia! I really need your help! I pulled a all-nighter yesterday to study and \n' +
+            print('\nYou: Hi Sadia! I really need your help! I pulled a all-nighter yesterday to study and \n' +
                   'I can\'t find my cheat sheet for the final right now. I really don\'t know what to do... \n')
             print('Saida: I hope you can learn a lesson of \'Time Management\' from this by not giving \n' +
                   'you any help, Kathleen. Anyways. (writing) Here. (hands a cheatsheet written by *HERSELF*) \n' +
                   'Good luck on your exam and have a wonderful summer break.')
             print('You thanked Sadia for her kindness of helping you.')
             p.got_cheatsheet_from_sadia = True
+            item = w.pick(location, p)
+            print('\nYou\'ve got Sadia\'s Cheatsheet.')
+
+        # Add the item in player's inventory if the player's choice is 'pick'.
+        if choice.lower() == 'pick':
+            item = w.pick(location, p)
+            print('\nYou\'ve picked up ' + item)
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
