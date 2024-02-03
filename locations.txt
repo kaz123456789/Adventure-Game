@@ -1,68 +1,74 @@
 LOCATION:UC DORM ROOM,11
 You woke up and realized you are at your dorm room.
-You woke up and realized you are at your dorm room. The clock says that it is already 2PM,
-your exam is staring in one hour! But you couldn't find your T-card, cheet sheet and lucky
+You woke up and realized you are at your dorm room. The clock says that it is already 2PM, 
+your exam is staring in one hour! But you couldn't find your T-card, cheatsheet and lucky 
 pen you need to take the exam! Hurry up! Get out of your bed and look for them before the exam starts!
 END
 LOCATION:UC,12
 You are on the first floor of Morrisan Hall. The cafeteria is less crowded than usual.
-You are on the first floor of Morrisan Hall, your home for first year. The cafeteria is less
-crowded than usual. There are a few students doing the punishments of Truth or Dare right
-now in the cafeteria, everyone is looking at them and laughing. You can exit from the east
+You are on the first floor of Morrisan Hall, your home for first year. The cafeteria is less 
+crowded than usual. There are a few students doing the punishments of Truth or Dare right 
+now in the cafeteria, everyone is looking at them and laughing. You can exit from the east 
 to the lawn at front campus.
 END
 LOCATION:RB COMMONS,13
-You are on the first floor of Robarts Commons, there's nearly no seats available because is the final season.
-You are at the Robarts Commons, there's nearly no seats available because is the final season.
-You study here all the time. The latest time you stayed here until 3AM.
+You are on the first floor of Robarts Commons, there's nearly no seats available because it's the final season. 
+You are at the Robarts Commons, there's nearly no seats available because it's the final season. 
+You usually study here with your CS buddies after lectures. The latest time you have stayed here was 3AM.
 END
 LOCATION:RB STARBUCKS,14
 You are at the Starbucks in Robarts library.
-You are at the Starbucks in Robarts library. There is a huge line-up just like usual.
+You are at the Starbucks in Robarts library. There is a huge line-up just like usual and mobile order wasn't allowed.
 END
 LOCATION:RB ENTRANCE,15
-You are on the first floor of Robarts Library.
-You entered Robarts Library with your T-card. This is the place you spend most of your time at.
+You are on the first floor of the Robarts Library.
+You entered the Robarts Library with your T-card. You usually come here when you want a quite study environment. 
+The printing area is more busy than usual. There's a blond girl counting the total number of her notes besides the 
+printer. DAMN! 80 pages??!!
 END
 LOCATION:SS STUDENT SERVICE,16
-You are at the student service office in Sidney Smith.
-You are at the student service office in Sidney Smith. You came here several times to ask questions and get
-past exam printouts.
+You are at the Student Service Office in Sidney Smith Commons.
+You are at the Student Service Office in Sidney Smith Commons. You came here several times to ask questions and get 
+past exam copies from ASSU.
 END
 LOCATION:LAWN,17
 You are at the lawn at front campus.
-You are at the lawn at front campus. The construction was just completed last fall.
+You are at the lawn at front campus. The construction had just completed last fall. You enjoy playing frisbee with 
+your friends when the weather is nice.
 END
 LOCATION:SS,18
 You are at the entrance of Sidney Smith Hall.
-You are at the entrance of Sidney Smith Hall. The Second Cup coffee shop is less busy than usual.
-You can head east to go downstairs.
+You are at the entrance of Sidney Smith Hall. Sometimes, you'd come get a heated almond croissant at the Second 
+Cup Coffee located at the foyer of Sidney Smith if you forgot to bring lunch. You can head east to go downstairs.
 END
 LOCATION:SS BASEMENT,19
 You are on the basement floor of Sidney Smith Hall.
-You are on the basement floor of Sidney Smith Hall near the math learning centre. Head west to go upstairs.
+You are on the basement floor of Sidney Smith Hall near the Math Learning Centre. Head west to go upstairs.
 END
 LOCATION:SS MLC, 20
-You are at the math learning centre.
-You are at the math learning centre. It is temporarily closed due to the exam season
-but the door was half opened, so you slip in.
+You are at the Math Learning Centre.
+You are at the Math Learning Centre. The Math Department decided to change the location since the room is too small for 
+the all the first year students who are taking MAT137. But the door was half opened, so you slip in.
 END
 LOCATION: MY,21
-You are at the entrance of Myhal.
-You are at the entrance of Myhal. There are many groups of engineering students working on their final project.
+You are at the entrance of Myhal Centre for Engineering Innovation and Entrepreneurship.
+You are at the entrance of Myhal Centre for Engineering Innovation and Entrepreneurship. 
+There are many groups of engineering students working on their final project. 
+Members of the dancing clubs came here to practice sometimes during nighttime.
 END
 LOCATION: MY MY150,22
 You entered the MY150.
-You entered the MY150, the lecture room you had last semester for CSC110. The room is empty.
+You entered the MY150, the lecture room you had last semester for CSC110. You usually sat at row B or C before. 
+The room is empty now.
 END
 LOCATION: BA,23
 You are on the first floor of Bahen Centre for Information Technology.
-You are on the first floor of Bahen Centre for Information Technology.
+You are on the first floor of Bahen Centre for Information Technology. 
 It seems like there is a job fair happening. It is very crowed and took you some time to get inside.
 END
 LOCATION: BA,24
-You are on the first floor of Bahen Centre for Information Technology.
-You are on the first floor of Bahen Centre for Information Technology. You have your CSC111 tutorial here.
+You are on the second floor of Bahen Centre for Information Technology.
+You are on the second floor of Bahen Centre for Information Technology. You have your CSC111 tutorial here. 
 The hallway is more crowded than usual. There is an elevator nearby you can take to go upstairs.
 END
 LOCATION: BA 4TH FLOOR,25
@@ -79,7 +85,7 @@ END
 LOCATION:EXAM CENTRE EX100,27
 You are at the door of EX100, where you will take your exam today!
 You are at the door of EX100, where you will take your exam today!
-You can now take the test if you have everything you need! If you are still not ready,
+You can now take the exam if you have everything you need! If you are still not ready,
 come back later! Remember the test is starting very soon, hurry up and find your items!
 END
 LOCATION:EXAM CENTRE EX200,28
