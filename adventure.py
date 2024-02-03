@@ -77,7 +77,6 @@ game_start = True
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate
-    rec = Player(0, 2)  # copy of the most recent x, y coordinates of the player
     total_steps_count = 0
     menu = ["look", "inventory", "score", "quit", "back"]
 
@@ -103,7 +102,7 @@ if __name__ == "__main__":
             print(location.location_name)
             print(location.brief_description)
 
-        # Depending on whether or not it's been visited before,
+        # Depending on whether it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
 
         # Print initial words and instructions
@@ -157,7 +156,6 @@ if __name__ == "__main__":
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
             if check_valid_action(w, choice, location, p):
                 do_action(p, choice)
-                # rec.x, rec.y = p.x, p.y
                 print('')
             else:
                 print('\nThis way is blocked.')
