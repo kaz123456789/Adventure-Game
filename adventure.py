@@ -81,12 +81,14 @@ if __name__ == "__main__":
     total_steps_count = 0
     menu = ["look", "inventory", "score", "quit", "back"]
 
-    print('You, Kathleen, is having your final tonight, but your campus study spree from last night has turned into \
-    a wild mystery! This morning, you\'re missing three vital things – your T-card, your lucky pen, and the packed \
-    cheat sheet. The clock is ticking, and your academic fate hangs in the balance. You\'ve got to backtrack, \
-    find your stuff scattered around campus before the exam starts tonight. It\'s a race against time and academic \
-    obstacles. Can you conquer the unexpected hurdles and meet your CS buddy Yanting at the Exam Centre on time? \
-    Hurry up and start your adventure! \n')
+    print('[BACKGROUND STORY]')
+    print('You, Kathleen, is having your final tonight, but your campus study spree from last night has \n' +
+          'turned into a wild mystery! This morning, you\'re missing three vital things – your T-card, \n' +
+          'your lucky pen, and the packed cheat sheet. The clock is ticking, and your academic fate hangs \n' +
+          'in the balance. You\'ve got to backtrack, find your stuff scattered around campus before the \n' +
+          'exam starts tonight. It\'s a race against time and academic obstacles. Can you conquer the \n' +
+          'unexpected hurdles and meet your CS buddy Yanting at the Exam Centre on time? Hurry up and \n' +
+          'start your adventure! \n')
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
@@ -109,7 +111,6 @@ if __name__ == "__main__":
         for action in w.available_actions(location, p):
             print(action)
         choice = input("\nEnter action: ")
-        print('')
         total_steps_count += 1
 
         if choice == "[menu]":
@@ -131,7 +132,17 @@ if __name__ == "__main__":
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
             item = w.pick(location, p)
-            print('\nYou\'ve picked up ' + item + '\n')
+            print('\nYou\'ve picked up ' + item)
+
+        # Greet and ask Sadia for a cheatsheet if the player has arrived at LOCATION 26
+        if choice.lower() == 'say hi':
+            print('You: Hi Sadia! I really need your help! I pulled a all-nighter yesterday to study and \n' +
+                  'I can\'t find my cheat sheet for the final right now. I really don\'t know what to do... \n')
+            print('Saida: I hope you can learn a lesson of \'Time Management\' from this by not giving \n' +
+                  'you any help, Kathleen. Anyways. (writing) Here. (hands a cheatsheet written by *HERSELF*) \n' +
+                  'Good luck on your exam and have a wonderful summer break.')
+            print('You thanked Sadia for her kindness of helping you.')
+            p.got_cheatsheet_from_sadia = True
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
@@ -139,19 +150,28 @@ if __name__ == "__main__":
             for item in p.inventory:
                 print(item)
 
-        # Print the player's score if their choice is 'score'.
-        if choice.lower() == 'score':
-            print('\nYour current score is: ' + str(p.score) + '\n')
-
         # Checks if the next action is valid, if yes, then make the move
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
             if check_valid_action(w, choice, location, p):
                 do_action(p, choice)
                 rec.x, rec.y = p.x, p.y
+                print('')
             else:
-                print('This way is blocked.')
+                print('\nThis way is blocked.')
                 print('You cannot go this way.')
 
+        # Player can enter the Robarts Library if they've pick up their T-Card,
+        # otherwise, they have to go back and get the T-Card before entering the library.
+        if p.x == 2 and p.y == 1:
+            if 'T-Card' not in p.inventory:
+                undo_action(p, choice)
+                print('You cannot get in the Robarts Library without your T-Card. \n' +
+                      'Get your T-Card and come back again! Hurry up!')
+
+        # Print the player's score if their choice is 'score'.
+        if choice.lower() == 'score':
+            print('\nYour current score is: ' + str(p.score) + '\n')
+            
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
             print(location.look())
@@ -167,7 +187,7 @@ if __name__ == "__main__":
             print('You exit the game. You can reload the page to start a new game.')
             break
 
-        if total_steps_count > 25:
+        if total_steps_count > 20:
             print('Times up! You failed to make it to the test. Try again!')
             break
 
