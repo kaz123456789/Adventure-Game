@@ -159,7 +159,8 @@ class Player:
         - The player's final position is (3, 5), where the Exam Centre is,
         - The player has all the academic weapons prepared for the exam.
         """
-        all_items = all(item in self.inventory for item in ['Cheat Sheet', 'T-card', 'Lucky pen'])
+        all_items = all(item in self.inventory for item in [('Cheatsheet' or 'Sadia\'s Cheatsheet'),
+                                                            'T-card', 'Lucky pen'])
         if (self.x == 2 and self.y == 6) and all_items:
             self.victory = True
 
@@ -287,7 +288,7 @@ class World:
                 actions.append('pick')
         if 'Backpack' in player.inventory:
             actions.append('open')
-        if player.x == 6 and player.y == 5:
+        if player.x == 6 and player.y == 5 and not player.got_cheatsheet_from_sadia:
             actions.append('say hi')
 
         return actions
@@ -313,6 +314,7 @@ class World:
         for item in self.items:
             if item.name == 'Backpack':
                 item.name = 'Lucky pen'
-        player.inventory.remove('Backpack ')
+        player.inventory.remove('Backpack')
         player.inventory.append('Lucky pen')
+
 
