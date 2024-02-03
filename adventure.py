@@ -81,8 +81,12 @@ if __name__ == "__main__":
     total_steps_count = 0
     menu = ["look", "inventory", "score", "quit", "back"]
 
-    print('Welcome to Kathleen & Yanting\'s adventure world! \n')
-    print('Your adventure starts here! \n')
+    print('You, Kathleen, is having your final tonight, but your campus study spree from last night has turned into \
+    a wild mystery! This morning, you\'re missing three vital things – your T-card, your lucky pen, and the packed \
+    cheat sheet. The clock is ticking, and your academic fate hangs in the balance. You\'ve got to backtrack, \
+    find your stuff scattered around campus before the exam starts tonight. It\'s a race against time and academic \
+    obstacles. Can you conquer the unexpected hurdles and meet your CS buddy Yanting at the Exam Centre on time? \
+    Hurry up and start your adventure! \n')
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
@@ -169,7 +173,7 @@ if __name__ == "__main__":
 
     p.cond_of_victory()
     if p.victory:
-        print("Congratulations! You have everything you need before the exam starts and You \
-        came to the Exam Centre on time! Good luck on your test!")
+        print("Congratulations! You have everything you need before the exam starts and You came to the Exam Centre \
+        on time! Yanting has been waiting for you for a while. Good luck on your final exam Kathleen!")
     else:
         print("You failed to make it to the test. Try again!")
