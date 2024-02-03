@@ -8,7 +8,7 @@ LOCATION:UC,12
 You are on the first floor of Morrisan Hall. The cafeteria is less crowded than usual.
 You are on the first floor of Morrisan Hall, your home for first year. The cafeteria is less
 crowded than usual. There are a few students doing the punishments of Truth or Dare right
-now in the cafeteria, everyone is looking at them and laughing. You can exit from the east
+now in the cafeteria, everyone is looking at them and laughing. You can exit from the east 
 to the lawn at front campus.
 END
 LOCATION:RB COMMONS,13
