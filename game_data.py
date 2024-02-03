@@ -130,11 +130,12 @@ class Player:
         - 0 <= self.x_cord
         - 0 <= self.y_cord
     """
-    x_cord: int
-    y_cord: int
+    x: int
+    y: int
     inventory: list[str]
     victory: bool
     score: int
+    got_cheatsheet_from_sadia: bool
 
     def __init__(self, x: int, y: int) -> None:
         """
@@ -150,6 +151,7 @@ class Player:
         self.inventory = []
         self.victory = False
         self.score = 0
+        self.got_cheatsheet_from_sadia = False
 
     def cond_of_victory(self) -> None:
         """
@@ -157,9 +159,8 @@ class Player:
         - The player's final position is (3, 5), where the Exam Centre is,
         - The player has all the academic weapons prepared for the exam.
         """
-        location = self.x_cord == 3 and self.y_cord == 5
         all_items = all(item in self.inventory for item in ['Cheat Sheet', 'T-card', 'Lucky pen'])
-        if location and all_items:
+        if (self.x == 2 and self.y == 6) and all_items:
             self.victory = True
 
 
@@ -185,7 +186,6 @@ class World:
         - location_data: name of text file containing location data (format left up to you)
         - items_data: name of text file containing item data (format left up to you)
         """
-
         # NOTES:
 
         # map_data should refer to an open text file containing map data in a grid format, with integers separated by a
@@ -283,14 +283,16 @@ class World:
 
         actions = ['[menu]', 'score', 'north', 'south', 'west', 'east']
         for item in self.items:
-            if location.location_number == item.start_position:
+            if location.location_number == item.start_position and not player.got_cheatsheet_from_sadia:
                 actions.append('pick')
         if 'Backpack' in player.inventory:
             actions.append('open')
+        if player.x == 6 and player.y == 5:
+            actions.append('say hi')
 
         return actions
 
-    def pick(self, location: Location, p: Player) -> str:
+    def pick(self, location: Location, player: Player) -> str:
         """
         Pick up the item and store in player's inventory and return item name.
         The item is also removed from this location.
@@ -298,19 +300,19 @@ class World:
         item_name = ''
         for item in self.items:
             if item.start_position == location.location_number:
-                p.inventory.append(item.name)
+                player.inventory.append(item.name)
                 item_name = item.name
                 item.start_position = -1
 
         return item_name
 
-    def open_backpack(self, p: Player) -> None:
+    def open_backpack(self, player: Player) -> None:
         """
         Open the backpack and get the lucky pen that is inside the bag.
         """
         for item in self.items:
             if item.name == 'Backpack':
                 item.name = 'Lucky pen'
-        p.inventory.remove('Backpack')
-        p.inventory.append('Lucky pen')
+        player.inventory.remove('Backpack ')
+        player.inventory.append('Lucky pen')
 
