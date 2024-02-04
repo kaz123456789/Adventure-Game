@@ -77,7 +77,7 @@ game_start = True
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate\
-    temp = Player(0, 2)
+    temp = Player(0, 2)  # a copy of player's location
     total_steps_count = 0
     menu = ["look", "inventory", "score", "quit", "back"]
 
@@ -99,6 +99,8 @@ if __name__ == "__main__":
             print(location.long_description)
             p.score += 1
         else:
+            # Only print the location name and brief description when the player's location
+            # changes after executing the player's <choice>.
             if p.x != temp.x or p.y != temp.y:
                 print(location.location_name)
                 print(location.brief_description)
