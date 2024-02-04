@@ -76,7 +76,8 @@ game_start = True
 
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
-    p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate
+    p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate\
+    temp = Player(0, 2)
     total_steps_count = 0
     menu = ["look", "inventory", "score", "quit", "back"]
 
@@ -98,9 +99,9 @@ if __name__ == "__main__":
             print(location.long_description)
             p.score += 1
         else:
-            # if p.x != rec.x and p.y != rec.y:
-            print(location.location_name)
-            print(location.brief_description)
+            if p.x != temp.x or p.y != temp.y:
+                print(location.location_name)
+                print(location.brief_description)
 
         # Depending on whether it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -118,6 +119,7 @@ if __name__ == "__main__":
             for option in menu:
                 print(option)
             choice = input("\nChoose action: ")
+            total_steps_count += 1
 
         # Check if the player's choice is in the available actions and ask the player to
         # make another choice if needed.
@@ -140,17 +142,20 @@ if __name__ == "__main__":
             p.got_cheatsheet_from_sadia = True
             item = w.pick(location, p)
             print('\nYou\'ve got Sadia\'s Cheatsheet.')
+            temp.x, temp.y = p.x, p.y
 
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
             item = w.pick(location, p)
             print('\nYou\'ve picked up ' + item)
+            temp.x, temp.y = p.x, p.y
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
             print('[inventory]')
             for item in p.inventory:
                 print(item)
+            temp.x, temp.y = p.x, p.y
 
         # Checks if the next action is valid, if yes, then make the move
         if choice.lower() == 'east' or 'west' or 'south' or 'north':
@@ -172,16 +177,19 @@ if __name__ == "__main__":
         # Print the player's score if their choice is 'score'.
         if choice.lower() == 'score':
             print('\nYour current score is: ' + str(p.score) + '\n')
+            temp.x, temp.y = p.x, p.y
 
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
             print(location.look())
+            temp.x, temp.y = p.x, p.y
 
         # The player can open their backpack if this action is valid
         if choice.lower() == 'open':
             w.open_backpack(p)
             print('\nYou\'ve opened backpack' + '\n')
             p.score += 5
+            temp.x, temp.y = p.x, p.y
 
         # Reset all the data if the player's choice is 'quit'.
         if choice.lower() == 'quit':
