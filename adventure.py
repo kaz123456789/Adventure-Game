@@ -76,7 +76,7 @@ if __name__ == "__main__":
     p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate\
     temp = Player(0, 2)  # a copy of player's location
     total_steps_count = 0
-    menu = ["look", "inventory", "score", "quit", "back"]
+    menu = ["look", "inventory", "score", "steps", "quit", "back"]
 
     print('[BACKGROUND STORY]')
     print('You, Kathleen, is having your final tonight, but your campus study spree from last night has \n' +
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         # Check if the player's choice is in the available actions and ask the player to
         # make another choice if needed.
         while choice.lower() not in w.available_actions(location, p) and choice not in menu:
-            print("This is not a valid action\n")
+            print("\nThis is not a valid action\n")
             for action in w.available_actions(location, p):
                 print(action)
             choice = input("\nEnter action: ")
@@ -151,7 +151,7 @@ if __name__ == "__main__":
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
-            print('[inventory]')
+            print('\n[inventory]')
             for item in p.inventory:
                 print(item)
             temp.x, temp.y = p.x, p.y
@@ -178,6 +178,11 @@ if __name__ == "__main__":
             print('\nYour current score is: ' + str(p.score) + '\n')
             temp.x, temp.y = p.x, p.y
 
+        # Print the player's total steps count if their choice is 'steps'.
+        if choice.lower() == 'steps':
+            print('\nYour total steps count is: ' + str(total_steps_count) + '\n')
+            temp.x, temp.y = p.x, p.y
+
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
             print(location.look())
@@ -195,11 +200,13 @@ if __name__ == "__main__":
             print('You exit the game. You can reload the page to start a new game.\n')
             break
 
-        if total_steps_count > 35:
+        if total_steps_count > 40:
             print('Times up! You failed to make it to the test. Try again!\n')
             break
 
-    p.cond_of_victory()
+        if p.cond_of_victory():
+            break
+
     if p.victory:
         print("Congratulations! You have everything you need before the exam starts and You came to the Exam Centre \
         on time! Yanting has been waiting for you for a while. Good luck on your final exam Kathleen!")
