@@ -71,9 +71,6 @@ def check_valid_action(world: World, player_choice: str,
         return True
 
 
-game_start = True
-
-
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate\
