@@ -156,12 +156,12 @@ class Player:
     def cond_of_victory(self) -> bool:
         """
         The 2 conditions of winning:
-        - The player's final position is (3, 5), where the Exam Centre is,
-        - The player has all the academic weapons prepared for the exam.
+        - The player's final position is (2, 6), where the Exam Centre is,
+        - The player has all the items: Sadia's Cheatsheet/Cheatsheet, T-card, Lucky Pen ready for the exam.
         """
-        all_items = all(item in self.inventory for item in ['Sadia\'s Cheatsheet', 'T-card', 'Lucky Pen'])
-        all_items_ver2 = all(item in self.inventory for item in ['Cheatsheet', 'T-card', 'Lucky Pen'])
-        if all_items or all_items_ver2:
+        all_items = all(item in self.inventory for item in {'Sadia\'s Cheatsheet', 'T-card', 'Lucky Pen'})
+        all_items_ver2 = all(item in self.inventory for item in {'Cheatsheet', 'T-card', 'Lucky Pen'})
+        if (self.x == 2 and self.y == 6) and (all_items or all_items_ver2):
             self.victory = True
             return True
         return False
@@ -318,5 +318,4 @@ class World:
                 item.name = 'Lucky pen'
         player.inventory.remove('Backpack')
         player.inventory.append('Lucky Pen')
-
 
