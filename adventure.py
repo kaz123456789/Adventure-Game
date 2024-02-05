@@ -74,7 +74,7 @@ def check_valid_action(world: World, player_choice: str,
 if __name__ == "__main__":
     w = World(open("map.txt"), open("locations.txt"), open("items.txt"))
     p = Player(0, 2)  # set starting location of player; you may change the x, y coordinates here as appropriate\
-    temp = Player(0, 2)  # a copy of player's location
+    temp_x, temp_y = 0, 2  # a copy of player's most recent move
     total_steps_count = 0
     menu = ["look", "inventory", "score", "steps", "quit", "back"]
 
@@ -98,7 +98,7 @@ if __name__ == "__main__":
         else:
             # Only print the location name and brief description when the player's location
             # changes after executing the player's <choice>.
-            if p.x != temp.x or p.y != temp.y:
+            if p.x != temp_x or p.y != temp_y:
                 print(location.location_name)
                 print(location.brief_description)
 
@@ -134,41 +134,46 @@ if __name__ == "__main__":
         if choice.lower() == 'say hi':
             print('You: Hi Sadia! I really need your help! I pulled a all-nighter yesterday to study and \n'
                   'I can\'t find my cheat sheet for the final right now. I really don\'t know what to do... \n')
-            print('Saida:\'Awwww, that sounds awful... Here, (hands a cheatsheet written by *HERSELF*) \n'
+            print('Saida:\'Awww, that sounds awful... Here, (hands a cheatsheet written by *HERSELF*) \n'
                   'good luck on your exam and have a wonderful summer break.')
             print('\nYou thanked Sadia for her kindness of helping you.')
             get_cheatsheet_from_sadia = True
-            p.inventory.append('Sadia\'s Cheatsheet')
-            temp.x, temp.y = p.x, p.y
+
+            # Use temp_x and temp_y as temporary variables to store the player's most recent
+            # x, y coordinates after each action except for the Go [direction] commands
+            temp_x, temp_y = p.get_x_cord(), p.get_y_cord()
 
         # Add the item in player's inventory if the player's choice is 'pick'.
         if choice.lower() == 'pick':
             item = w.pick(location, p)
             print('\nYou\'ve picked up ' + item)
-            temp.x, temp.y = p.x, p.y
+            temp_x, temp_y = p.get_x_cord(), p.get_y_cord()  # same as line 144
 
         # Allow the player to drop item (in their inventory) at any location
         if choice.lower() == 'drop':
             if location.location_number == 17:
-                print('Littering is not premitted on the lawn!!')
+                print('\nLittering is not permitted on the lawn!!')
             else:
-                item_dropped = input('Which item do you want to drop?')
+                item_dropped = input('\nWhich item do you want to drop?')
                 if item_dropped not in p.inventory:
-                    print('You can\'t drop something you don\'t have')
+                    print('\nYou can\'t drop something you don\'t have')
                 else:
                     w.drop_item(location, p, item_dropped)
-                    print('You\'ve dropped ' + item_dropped)
+                    print('\nYou\'ve dropped ' + item_dropped)
+            temp_x, temp_y = p.get_x_cord(), p.get_y_cord()  # same as line 144
 
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
             print('\n[inventory]')
             for item in p.inventory:
                 print(item)
-            temp.x, temp.y = p.x, p.y
+            temp_x, temp_y = p.get_x_cord(), p.get_y_cord()  # same as line 144
 
         # Checks if the next action is valid, if yes, then make the move
         directions = {'east', 'west', 'south', 'north'}
         if choice.lower() in directions:
+            # Update temp_x and temp_y so that line 101 will be True after 'do_action' executed
+            temp_x, temp_y = p.get_x_cord(), p.get_y_cord()
             if check_valid_action(w, choice, location, p):
                 do_action(p, choice)
                 print('')
@@ -178,7 +183,7 @@ if __name__ == "__main__":
 
         # Player can enter the Robarts Library if they've pick up their T-Card,
         # otherwise, they have to go back and get the T-Card before entering the library.
-        if p.x == 2 and p.y == 1:
+        if p.x == 2 and p.y <= 1:
             if 'T-Card' not in p.inventory:
                 undo_action(p, choice)
                 print('You cannot get in the Robarts Library without your T-Card. \n'
@@ -187,24 +192,24 @@ if __name__ == "__main__":
         # Print the player's score if their choice is 'score'.
         if choice.lower() == 'score':
             print('\nYour current score is: ' + str(p.score) + '\n')
-            temp.x, temp.y = p.x, p.y
+            temp_x, temp_y = p.get_x_cord(), p.get_y_cord()  # same as line 144
 
         # Print the player's total steps count if their choice is 'steps'.
         if choice.lower() == 'steps':
             print('\nYour total steps count is: ' + str(total_steps_count) + '\n')
-            temp.x, temp.y = p.x, p.y
+            temp_x, temp_y = p.get_x_cord(), p.get_y_cord()  # same as line 144
 
         # Print the long description if the player's choice is 'look'.
         if choice.lower() == 'look':
             print(location.look())
-            temp.x, temp.y = p.x, p.y
+            temp_x, temp_y = p.get_x_cord(), p.get_y_cord()  # same as line 144
 
         # The player can open their backpack if this action is valid
         if choice.lower() == 'open':
             w.open_backpack(p)
             print('\nYou\'ve opened backpack' + '\n')
             p.score += 5
-            temp.x, temp.y = p.x, p.y
+            temp_x, temp_y = p.get_x_cord(), p.get_y_cord()  # same as line 144
 
         # Reset all the data if the player's choice is 'quit'.
         if choice.lower() == 'quit':
@@ -218,8 +223,8 @@ if __name__ == "__main__":
         if p.x == 2 and p.y == 6:
             p.cond_of_victory()
             for item in w.items:
-                if item in p.inventory and location.location_number == item.target_position:
-                    p.score += item.target_points
+                p.score += item.target_points
+            print('\nYou\'re total score is: ' + str(p.score) + '\n')
 
     if p.victory:
         print('You finally arrived at EX100.\n'
