@@ -291,6 +291,8 @@ class World:
         for item in self.items:
             if location.location_number == item.start_position and 'say hi' not in actions:
                 actions.append('pick')
+        if player.inventory:
+            actions.append('drop')
 
         return actions
 
@@ -308,6 +310,17 @@ class World:
                 item.start_position = -1
 
         return item_name
+
+    def drop_item(self, location: Location, player: Player, selected_item: str) -> None:
+        """
+        Romove the item dropped from player's inventory and set its start_position to
+        the current locaiton number.
+        """
+        item_name = ''
+        for item in self.items:
+            if item.name == selected_item:
+                item.start_position = location.location_number
+                player.inventory.remove(selected_item)
 
     def open_backpack(self, player: Player) -> None:
         """
