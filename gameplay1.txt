@@ -15,8 +15,4 @@ east
 east
 east
 say hi
-west
-west
-west
-west
-south
+quit
