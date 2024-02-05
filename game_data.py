@@ -154,6 +154,18 @@ class Player:
         self.score = 0
         self.got_cheatsheet_from_sadia = False
 
+    def get_x_cord(self) -> int:
+        """
+        Return the x coordinate of Player.
+        """
+        return self.x
+
+    def get_y_cord(self) -> int:
+        """
+        Return the y coordinate of Player.
+        """
+        return self.y
+
     def cond_of_victory(self) -> None:
         """
         The 2 conditions of winning:
@@ -313,7 +325,7 @@ class World:
 
     def drop_item(self, location: Location, player: Player, selected_item: str) -> None:
         """
-        Romove the item dropped from player's inventory and set its start_position to
+        Remove the item dropped from player's inventory and set its start_position to
         the current locaiton number.
         """
         for item in self.items:
@@ -330,18 +342,3 @@ class World:
                 item.name = 'Lucky Pen'
         player.inventory.remove('Backpack')
         player.inventory.append('Lucky Pen')
-
-
-if __name__ == '__main__':
-    import doctest
-
-    doctest.testmod(verbose=True)
-
-    # When you are ready to check your work with python_ta, uncomment the following lines.
-    # (In PyCharm, select the lines below and press Ctrl/Cmd + / to toggle comments.)
-    # You can use "Run file in Python Console" to run both pytest and PythonTA,
-    # and then also test your methods manually in the console.
-    import python_ta
-    python_ta.check_all(config={
-        'max-line-length': 120
-    })
