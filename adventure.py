@@ -204,6 +204,9 @@ if __name__ == "__main__":
 
         if p.x == 2 and p.y == 6:
             p.cond_of_victory()
+            for item in w.items:
+                if item in p.inventory and location.location_number == item.target_position:
+                    p.score += item.target_points
 
     if p.victory:
         print('You finally arrived at EX100.\n'
