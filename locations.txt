@@ -53,24 +53,24 @@ the all the first year students who are taking MAT137. But the door was half ope
 END
 LOCATION: MY,21
 You are at the entrance of Myhal Centre for Engineering Innovation and Entrepreneurship.
-You are at the entrance of Myhal Centre for Engineering Innovation and Entrepreneurship.
-There are many groups of engineering students working on their final project.
-Members of the dancing clubs came here to practice sometimes during nighttime.
+You are at the entrance of Myhal Centre for Engineering Innovation and Entrepreneurship. 
+There are many groups of engineering students working on their final project. 
+Members of the dancing clubs came here to practice sometimes during nighttime. 
 END
 LOCATION: MY MY150,22
 You entered the MY150.
-You entered the MY150, the lecture room you had last semester for CSC110. You usually sat at row B or C before.
+You entered the MY150, the lecture room you had last semester for CSC110. You usually sat at row B or C before. 
 The room is empty now.
 END
 LOCATION: BA,23
 You are on the first floor of Bahen Centre for Information Technology. 
 You are on the first floor of Bahen Centre for Information Technology. 
-It seems like there is a job fair happening. It is very crowed and took you some time to get inside.
+It seems like there is a job fair happening. It is very crowed and took you some time to get inside. 
 END
 LOCATION: BA,24
 You are on the second floor of Bahen Centre for Information Technology. 
 You are on the second floor of Bahen Centre for Information Technology. You have your CSC111 tutorial here. 
-The hallway is more crowded than usual. There is an elevator nearby you can take to go upstairs.
+The hallway is more crowded than usual. There is an elevator nearby you can take to go upstairs. 
 END
 LOCATION: BA 4TH FLOOR,25
 You are on the fourth floor of Bahen Centre.
@@ -79,9 +79,9 @@ and Sadia is sitting at the end of the table looking at her laptop.
 END
 LOCATION: BA 4290,26
 You entered room BA4290.
-You entered room BA4290. Your CSC111's office hours takes place in this room.
+You entered room BA4290. Your CSC111's office hours takes place in this room. 
 Sadia have noticed you entered the room, she asked you why are you still here, it's almost the start of your exam. 
-You told her that you can't find your cheatsheet. Now she asks you if you need any help.
+You told her that you can't find your cheatsheet. Now she asks you if you need any help. 
 END
 LOCATION: EXAM CENTRE EX100,27
 You are at the door of EX100, where you will take your exam today!
