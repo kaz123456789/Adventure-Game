@@ -132,15 +132,13 @@ if __name__ == "__main__":
 
         # Greet and ask Sadia for a cheatsheet if the player has arrived at LOCATION 26
         if choice.lower() == 'say hi':
-            print('\nYou: Hi Sadia! I really need your help! I pulled a all-nighter yesterday to study and \n' +
+            print('You: Hi Sadia! I really need your help! I pulled a all-nighter yesterday to study and \n' +
                   'I can\'t find my cheat sheet for the final right now. I really don\'t know what to do... \n')
-            print('Saida: I hope you can learn a lesson of \'Time Management\' from this by not giving \n' +
-                  'you any help, Kathleen. Anyways. (writing) Here. (hands a cheatsheet written by *HERSELF*) \n' +
-                  'Good luck on your exam and have a wonderful summer break.')
-            print('You thanked Sadia for her kindness of helping you.')
-            p.got_cheatsheet_from_sadia = True
-            item = w.pick(location, p)
-            print('\nYou\'ve got Sadia\'s Cheatsheet.')
+            print('Saida:\'Awwww, that sounds awful... Here, (hands a cheatsheet written by *HERSELF*) \n' +
+                  'good luck on your exam and have a wonderful summer break.')
+            print('\nYou thanked Sadia for her kindness of helping you.')
+            get_cheatsheet_from_sadia = True
+            p.inventory.append('Sadia\'s Cheatsheet')
             temp.x, temp.y = p.x, p.y
 
         # Add the item in player's inventory if the player's choice is 'pick'.
@@ -208,7 +206,9 @@ if __name__ == "__main__":
             p.cond_of_victory()
 
     if p.victory:
-        print("Congratulations! You have everything you need before the exam starts and You came to the Exam Centre \
-        on time! Yanting has been waiting for you for a while. Good luck on your final exam Kathleen!")
+    print('You finally arrived at EX100.\n'
+          'Congratulations! You have everything you need before the exam starts '
+          'and You came to the Exam Centre on time! \n' +
+          'Yanting has been waiting for you for a while. Good luck on your final exam Kathleen!')
     else:
         print("You failed to make it to the test. Try again!")
