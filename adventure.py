@@ -206,9 +206,9 @@ if __name__ == "__main__":
             p.cond_of_victory()
 
     if p.victory:
-    print('You finally arrived at EX100.\n'
-          'Congratulations! You have everything you need before the exam starts '
-          'and You came to the Exam Centre on time! \n' +
-          'Yanting has been waiting for you for a while. Good luck on your final exam Kathleen!')
+        print('You finally arrived at EX100.\n'
+              'Congratulations! You have everything you need before the exam starts '
+              'and You came to the Exam Centre on time! \n' +
+              'Yanting has been waiting for you for a while. Good luck on your final exam Kathleen!')
     else:
         print("You failed to make it to the test. Try again!")
