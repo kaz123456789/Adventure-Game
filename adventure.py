@@ -79,12 +79,12 @@ if __name__ == "__main__":
     menu = ["look", "inventory", "score", "steps", "quit", "back"]
 
     print('[BACKGROUND STORY]')
-    print('You, Kathleen, is having your final tonight, but your campus study spree from last night has \n' +
-          'turned into a wild mystery! This morning, you\'re missing three vital things – your T-card, \n' +
-          'your lucky pen, and the packed cheat sheet. The clock is ticking, and your academic fate hangs \n' +
-          'in the balance. You\'ve got to backtrack, find your stuff scattered around campus before the \n' +
-          'exam starts tonight. It\'s a race against time and academic obstacles. Can you conquer the \n' +
-          'unexpected hurdles and meet your CS buddy Yanting at the Exam Centre on time? Hurry up and \n' +
+    print('You, Kathleen, is having your final tonight, but your campus study spree from last night has \n'
+          'turned into a wild mystery! This morning, you\'re missing three vital things – your T-card, \n'
+          'your lucky pen, and the packed cheat sheet. The clock is ticking, and your academic fate hangs \n'
+          'in the balance. You\'ve got to backtrack, find your stuff scattered around campus before the \n'
+          'exam starts tonight. It\'s a race against time and academic obstacles. Can you conquer the \n'
+          'unexpected hurdles and meet your CS buddy Yanting at the Exam Centre on time? Hurry up and \n'
           'start your adventure! \n')
 
     while not p.victory:
@@ -132,9 +132,9 @@ if __name__ == "__main__":
 
         # Greet and ask Sadia for a cheatsheet if the player has arrived at LOCATION 26
         if choice.lower() == 'say hi':
-            print('You: Hi Sadia! I really need your help! I pulled a all-nighter yesterday to study and \n' +
+            print('You: Hi Sadia! I really need your help! I pulled a all-nighter yesterday to study and \n'
                   'I can\'t find my cheat sheet for the final right now. I really don\'t know what to do... \n')
-            print('Saida:\'Awwww, that sounds awful... Here, (hands a cheatsheet written by *HERSELF*) \n' +
+            print('Saida:\'Awwww, that sounds awful... Here, (hands a cheatsheet written by *HERSELF*) \n'
                   'good luck on your exam and have a wonderful summer break.')
             print('\nYou thanked Sadia for her kindness of helping you.')
             get_cheatsheet_from_sadia = True
@@ -167,7 +167,8 @@ if __name__ == "__main__":
             temp.x, temp.y = p.x, p.y
 
         # Checks if the next action is valid, if yes, then make the move
-        if choice.lower() == 'east' or 'west' or 'south' or 'north':
+        directions = {'east', 'west', 'south', 'north'}
+        if choice.lower() in directions:
             if check_valid_action(w, choice, location, p):
                 do_action(p, choice)
                 print('')
@@ -180,7 +181,7 @@ if __name__ == "__main__":
         if p.x == 2 and p.y == 1:
             if 'T-Card' not in p.inventory:
                 undo_action(p, choice)
-                print('You cannot get in the Robarts Library without your T-Card. \n' +
+                print('You cannot get in the Robarts Library without your T-Card. \n'
                       'Get your T-Card and come back again! Hurry up!')
 
         # Print the player's score if their choice is 'score'.
@@ -223,7 +224,7 @@ if __name__ == "__main__":
     if p.victory:
         print('You finally arrived at EX100.\n'
               'Congratulations! You have everything you need before the exam starts '
-              'and You came to the Exam Centre on time! \n' +
+              'and You came to the Exam Centre on time! \n'
               'Yanting has been waiting for you for a while. Good luck on your final exam Kathleen!')
     else:
         print("You failed to make it to the test. Try again!")
