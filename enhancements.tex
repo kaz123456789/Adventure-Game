@@ -6,7 +6,7 @@
 \usepackage[margin=0.75in]{geometry}
 
 \title{CSC111 Winter 2024 Project 1}
-\author{TODO: FILL IN YOUR NAME(S) HERE}
+\author{Kathleen Wang, Yanting Fan}
 \date{\today}
 
 \begin{document}
@@ -19,20 +19,41 @@
 
 \item Describe your enhancement \#1 here
 	\begin{itemize}
-	\item Brief description of what the enhancement is (if it's a puzzle, also describe what steps the player must take to solve it):
-	\item Complexity level (choose from low/medium/high):
-	\item Reasons you believe this is the complexity level (e.g. mention implementation details, how much code did you have to add/change from the baseline, what challenges did you face, etc.)
-	% Feel free to add more subheadings if you need
+	\item Brief description of what the enhancement is:
+        \item \('\)open' command
+        \item Opens the backpack when backpack is in player's inventory.
+	\item Complexity level (choose from low/medium/high): low
+	\item Reasons you believe this is the complexity level (e.g.mention implementation details, how much code did you have to add/change from the baseline, what challenges did you face, etc.):
+        \item We added a \('\)open\_backpack' function under the World class.
+        \item In order to get the pen, the player has to first pick up the backpack at the designed location - Robarts Commons (location number 13).
+        \item Then, the player can choose to open the backpack at any time to get the lucky pen.
+        \item Once the player enter \('\)open', the backpack will get dropped from the inventory and lucky pen will be added.
 	\end{itemize}
 
-% Uncomment below section if you have more enhancements; copy-paste as many times as needed
-%\item Describe your enhancement here
-%	\begin{itemize}
-%	\item Basic description of what the enhancement is:
-%	\item Complexity level (low/medium/high):
-%	\item Reasons you believe this is the complexity level (e.g. mention implementation details 
-%	% Feel free to add more subheadings if you feel the need
-%	\end{itemize}
+
+\item Describe your enhancement \#2 here
+	\begin{itemize}
+	\item Basic description of what the enhancement is:
+        \item \('\)say hi' command
+        \item Greets Sadia and print out a conversation between the player and Sadia.
+        \item Sadia then write a cheatsheet for the player and it will be added to player's inventory automatically.
+	\item Complexity level (low/medium/high): low
+	\item Reasons you believe this is the complexity level (e.g.mention implementation details):
+        \item We added an extra two lines in the \('\)available\_actions' function under the World class.
+        \item The \('\)say hi' command will show up in the list of actions if and only if the player is at BA 4290 and hasn't gotten a cheatsheet from Sadia.
+	\end{itemize}
+
+
+\item Describe your enhancement \#3 here
+	\begin{itemize}
+	\item Basic description of what the enhancement is:
+        \item The player is only allowed to enter the Robarts Library with a T-card.
+	\item Complexity level (low/medium/high): medium
+	\item Reasons you believe this is the complexity level (e.g.mention implementation details):
+        \item We added 4 lines in the \('\)adventure.py' to check if T-card is in player's inventory.
+        \item We added another function \('\)undo\_actions' that undo the player's most recent move .
+        \item If not, then the player's x, y coordinates will be returned to the most recent move based on the implementation of the \('\)undo\_actions' function.
+	\end{itemize}
 
 \end{enumerate}
 
@@ -40,5 +61,9 @@
 \section*{Extra Gameplay Files}
 
 If you have any extra \texttt{gameplay\#.txt} files, describe them below.
+    In \texttt{gameplay\#1.txt}, the player will first visit Robarts Commons with T-card. 
+    Then, they open the backpack to pick up the lucky pen. 
+    After that, they will visit Bahen Centre and enter room 4290 to get a cheatsheet from Sadia.
+    Finally, they will head to EX100 to take their final.
 
 \end{document}
