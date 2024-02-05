@@ -223,10 +223,11 @@ if __name__ == "__main__":
         if p.x == 2 and p.y == 6:
             p.cond_of_victory()
 
+    for item in w.items:
+        p.score += item.target_points
+    print('\nYou\'re total score is: ' + str(p.score) + '\n')
+
     if p.victory:
-        for item in w.items:
-            p.score += item.target_points
-        print('\nYou\'re total score is: ' + str(p.score) + '\n')
         print('You finally arrived at EX100.\n'
               'Congratulations! You have everything you need before the exam starts '
               'and You came to the Exam Centre on time! \n'
