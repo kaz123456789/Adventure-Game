@@ -147,6 +147,18 @@ if __name__ == "__main__":
             print('\nYou\'ve picked up ' + item)
             temp.x, temp.y = p.x, p.y
 
+        # Allow the player to drop item (in their inventory) at any location
+        if choice.lower() == 'drop':
+            if location.location_number == 17:
+                print('Littering is not premitted on the lawn!!')
+            else:
+                item_dropped = input('Which item do you want to drop?')
+                if item_dropped not in p.inventory:
+                    print('You can\'t drop something you don\'t have')
+                else:
+                    w.drop_item(location, p, item_dropped)
+                    print('You\'ve dropped ' + item_dropped)
+
         # Print the inventory list if the player's choice is 'inventory'.
         if choice.lower() == "inventory":
             print('\n[inventory]')
