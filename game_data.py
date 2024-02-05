@@ -28,13 +28,14 @@ class Item:
     Instance Attributes:
         - name: The name of the item.
         - start_position: The number position of where the item is located.
-        - target_position: The number of position of where the item is to be deposited for credit.
+        - target_position: The number of position of where the item should be deposited for credit.
         - target_points: The number of point rewarded if the item has been successfully delivered to the credit place.
 
     Representation Invariants:
         - self.name != ''
-        - self.start_position >= 0
-        - self.target_position >= 0
+        - self.start_position != -1
+        - self.target_position != -1
+        - self.target_points > 0
     """
     name: str
     start_position: int
@@ -64,17 +65,18 @@ class Location:
     """A location in our text adventure game world.
 
     Instance Attributes:
-        - location_number: An integer that represents the location
-        - location_name: the name of the location
+        - location_number: An unique integer that represents the location
+        - location_name: The name of the location
         - brief_description: A brief description of the location, or None if the location has not been visited
         - long_description: A full description of the location, or None if the location has been visited
         - visited: A boolean value indicates whether the location has been visited or not
 
     Representation Invariants:
-        - 0 <= self.x_cord
-        - 0 <= self.y_cord
-        - 0 <= self.location_number
-
+        - self.location_number != -1
+        - self.location_name != ''
+        - self.brief_description != ''
+        - self.long_description != ''
+        - len(self.brief_description) < len(self.long_description)
     """
     location_number: int
     location_name: str
@@ -127,8 +129,8 @@ class Player:
         - score: a record of the player's current score
 
     Representation Invariants:
-        - 0 <= self.x_cord
-        - 0 <= self.y_cord
+        - 0 <= self.x
+        - 0 <= self.y
     """
     x: int
     y: int
@@ -141,7 +143,6 @@ class Player:
         """
         Initializes a new Player at position (x, y).
         """
-
         # NOTES:
         # This is a suggested starter class for Player.
         # You may change these parameters and the data available for the Player object as you see fit.
@@ -170,11 +171,13 @@ class World:
 
     Instance Attributes:
         - map: a nested list representation of this world's map
-        - locations: a list of Location of this world's map
-        - items: a list of Item that are available on the map
+        - locations: a list of Location objects of this world's map
+        - items: a list of Item objects that are available on the map
 
     Representation Invariants:
         - self.map != [[]]
+        - self.locations != []
+        - self.items != []
     """
     map: list[list[int]]
     locations = list[Location]
@@ -247,10 +250,11 @@ class World:
 
     def load_items(self, items_data: TextIO) -> list[Item]:
         """
-        Return a list of items in the items_data.
+        Return a list of Item objects in the items_data.
         """
         items = []
         line = items_data.readline().strip()
+
         while line != '':
             data = line.strip().split(',')
             start_position, target_position, target_points, name = [item for item in data]
@@ -259,30 +263,27 @@ class World:
 
         return items
 
-    # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def get_location(self, x: int, y: int) -> Optional[Location]:
-        """Return Location object associated with the coordinates (x, y) in the world map, if a valid location exists at
-         that position. Otherwise, return None. (Remember, locations represented by the number -1 on the map should
-         return None.)
+        """
+        Return Location object associated with the coordinates (x, y) in the world map,
+        if a valid location exists at that position. Otherwise, return None.
+        (NOTES: locations represented by the number -1 on the map should return None.)
         """
         if 0 <= y < len(self.map) and 0 <= x < len(self.map[0]) and self.map[y][x] != -1:
             for location in self.locations:
                 if self.map[y][x] == location.location_number:
                     return location
+
         return None
 
     def available_actions(self, location: Location, player: Player) -> list[str]:
         """
-        Return the available actions in this location.
+        Return a list of available actions in this location.
         The actions should depend on the items available in the location
         and the x,y position of this location on the world map.
         """
-
-        # NOTE: This is just a suggested method
-        # i.e. You may remove/modify/rename this as you like, and complete the
-        # function header (e.g. add in parameters, complete the type contract) as needed
-
         actions = ['[menu]', 'score', 'north', 'south', 'west', 'east']
+
         if 'Backpack' in player.inventory:
             actions.append('open')
         elif player.x == 6 and player.y == 5 and not player.got_cheatsheet_from_sadia:
@@ -296,9 +297,10 @@ class World:
     def pick(self, location: Location, player: Player) -> str:
         """
         Pick up the item and store in player's inventory and return item name.
-        The item is also removed from this location.
+        The item will also be removed from this location after getting picked up.
         """
         item_name = ''
+
         for item in self.items:
             if item.start_position == location.location_number:
                 player.inventory.append(item.name)
