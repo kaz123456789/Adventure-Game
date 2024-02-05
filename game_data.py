@@ -180,8 +180,8 @@ class World:
         - self.items != []
     """
     map: list[list[int]]
-    locations = list[Location]
-    items = list[Item]
+    locations: list[Location]
+    items: list[Item]
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
@@ -233,7 +233,7 @@ class World:
         while line != '':
             if line.startswith('LOCATION'):
                 data = line.split(',')
-                location_name, location_num = [item for item in data]
+                location_name, location_num = (item for item in data)
                 short = location_data.readline().strip()
                 long = location_data.readline().strip()
                 curr = ''
@@ -257,7 +257,7 @@ class World:
 
         while line != '':
             data = line.strip().split(',')
-            start_position, target_position, target_points, name = [item for item in data]
+            start_position, target_position, target_points, name = (item for item in data)
             items.append(Item(str(name), int(start_position), int(target_position), int(target_points)))
             line = items_data.readline().strip()
 
@@ -316,7 +316,6 @@ class World:
         Romove the item dropped from player's inventory and set its start_position to
         the current locaiton number.
         """
-        item_name = ''
         for item in self.items:
             if item.name == selected_item:
                 item.start_position = location.location_number
@@ -331,3 +330,18 @@ class World:
                 item.name = 'Lucky Pen'
         player.inventory.remove('Backpack')
         player.inventory.append('Lucky Pen')
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod(verbose=True)
+
+    # When you are ready to check your work with python_ta, uncomment the following lines.
+    # (In PyCharm, select the lines below and press Ctrl/Cmd + / to toggle comments.)
+    # You can use "Run file in Python Console" to run both pytest and PythonTA,
+    # and then also test your methods manually in the console.
+    import python_ta
+    python_ta.check_all(config={
+        'max-line-length': 120
+    })
