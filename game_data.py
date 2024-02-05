@@ -153,18 +153,16 @@ class Player:
         self.score = 0
         self.got_cheatsheet_from_sadia = False
 
-    def cond_of_victory(self) -> bool:
+    def cond_of_victory(self) -> None:
         """
         The 2 conditions of winning:
         - The player's final position is (2, 6), where the Exam Centre is,
         - The player has all the items: Sadia's Cheatsheet/Cheatsheet, T-card, Lucky Pen ready for the exam.
         """
-        all_items = all(item in self.inventory for item in {'Sadia\'s Cheatsheet', 'T-card', 'Lucky Pen'})
-        all_items_ver2 = all(item in self.inventory for item in {'Cheatsheet', 'T-card', 'Lucky Pen'})
-        if (self.x == 2 and self.y == 6) and (all_items or all_items_ver2):
+        items_1 = all(item in self.inventory for item in {'T-Card', 'Lucky Pen'})
+        items_2 = any(item in self.inventory for item in {'Cheatsheet', 'Sadia\'s Cheatsheet'})
+        if (self.x == 2 and self.y == 6) and (items_1 and items_2):
             self.victory = True
-            return True
-        return False
 
 
 class World:
@@ -287,7 +285,7 @@ class World:
         actions = ['[menu]', 'score', 'north', 'south', 'west', 'east']
         if 'Backpack' in player.inventory:
             actions.append('open')
-        if player.x == 6 and player.y == 5 and not player.got_cheatsheet_from_sadia:
+        elif player.x == 6 and player.y == 5 and not player.got_cheatsheet_from_sadia:
             actions.append('say hi')
         for item in self.items:
             if location.location_number == item.start_position and 'say hi' not in actions:
@@ -315,7 +313,6 @@ class World:
         """
         for item in self.items:
             if item.name == 'Backpack':
-                item.name = 'Lucky pen'
+                item.name = 'Lucky Pen'
         player.inventory.remove('Backpack')
         player.inventory.append('Lucky Pen')
-
