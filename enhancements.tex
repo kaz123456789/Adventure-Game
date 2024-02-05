@@ -25,8 +25,8 @@
 	\item Complexity level (choose from low/medium/high): low
 	\item Reasons you believe this is the complexity level (e.g.mention implementation details, how much code did you have to add/change from the baseline, what challenges did you face, etc.):
         \item We added a \('\)open\_backpack' function under the World class.
-        \item In order to get the pen, the player has to first pick up the backpack at the designed location - Robarts Commons (location number 13).
-        \item Then, the player can choose to open the backpack at any time to get the lucky pen.
+        \item This allows the player open their backpack and get the luck pen hidden inside.
+        \item We implemented this by adding an open command in the available actions when the backpack is in player's inventory.
         \item Once the player enter \('\)open', the backpack will get dropped from the inventory and lucky pen will be added.
 	\end{itemize}
 
@@ -47,7 +47,7 @@
 \item Describe your enhancement \#3 here
 	\begin{itemize}
 	\item Basic description of what the enhancement is:
-        \item The player is only allowed to enter the Robarts Library with a T-card.
+        \item The player is only allowed to enter the Robarts Library if they have already picked up the T-card.
 	\item Complexity level (low/medium/high): medium
 	\item Reasons you believe this is the complexity level (e.g.mention implementation details):
         \item We added 4 lines in the \('\)adventure.py' to check if T-card is in player's inventory.
